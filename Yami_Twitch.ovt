@@ -1,0 +1,596 @@
+@OBSThemeMeta {
+    name: 'Twitch';
+    id: 'com.obsproject.Yami.Twitch';
+    extends: 'com.obsproject.Yami';
+    author: 'Lind';
+    dark: 'true';
+}
+
+@OBSThemeVars {
+    --pink: rgb(255,0,255);
+    --grey1: rgb(200,199,200);
+    --grey2: rgb(160,160,160);
+    --grey3: rgb(120,120,120);
+    --grey4: rgb(64,64,64);
+    --grey5: rgb(34,33,39);
+    --grey6: rgb(24,24,27);
+    --grey7: rgb(14,14,16);
+    --grey8: rgb(11,10,11);
+
+    --bg_window: var(--grey6);
+    --bg_preview: var(--grey8);
+    --bg_base: var(--grey7);
+
+    --primary: rgb(145,70,255);
+    --primary_light: rgb(120,44,232);
+
+
+    /* Layout */
+    --font_base_value: 8;
+    --spacing_base_value: 4;
+    --padding_base_value: 0.25; 
+
+    /* OS Fixes */
+    --os_mac_font_base_value: 11;
+
+    /* Default changes */
+    --icon_base: calc(6px + var(--font_base_value));
+
+    --padding_wide: calc(18px + calc(0.25 * var(--padding_base_value)));
+    --padding_menu: calc(8px + calc(1 * var(--padding_base_value)));
+
+    --input_height_base: calc(1px + calc(var(--input_font_scale) + var(--input_font_padding)));
+
+    --border_color: var(--primary);
+    --border_color_grey: var(--grey7);
+
+    --border_radius: 2px;
+    --border_radius_small: 0px;
+    --border_radius_large: 0px;
+
+    --input_bg: var(--primary);
+    --input_bg_hover: var(--primary_light);
+    --input_bg_focus: var(--grey8);
+
+    --list_item_bg_selected: var(--primary);
+    --list_item_bg_hover: var(--primary_light);
+
+    --input_border: var(--primary);
+    --input_border_hover: var(--primary_light);
+    --input_border_focus: var(--primary_light);
+
+    --spacing_input: var(--spacing_base);
+
+    --title_bg: var(--grey6);
+
+    --button_bg: var(--primary);
+    --button_bg_hover: var(--primary_light);
+    --button_bg_down: var(--grey7);
+    --button_bg_disabled: var(--grey5);
+    --button_pressed: var(--grey5);
+
+    --button_border: var(--button_bg);
+    --button_border_hover: var(--primary);
+    --button_border_focus: var(--primary);
+
+    --tab_bg: var(--primary_light);
+    --tab_bg_hover: var(--primary);
+    --tab_bg_down: var(--primary);
+    --tab_bg_disabled: var(--grey8);
+
+    --tab_border: var(--grey1);
+    --tab_border_hover: var(--grey1);
+    --tab_border_focus: var(--grey1);
+    --tab_border_selected: var(--primary);
+
+    --scrollbar: var(--grey4);
+    --scrollbar_hover: var(--grey3);
+    --scrollbar_down: var(--grey8);
+    --scrollbar_border: var(--grey2);
+
+    --volume_slider: 5px;
+
+    /* Variant Extras */
+    --dock_title_padding: calc(2px + var(--padding_base));
+    --icon_base_mixer: calc(4px + var(--icon_base));
+    --padding_menu_y: calc(3px + calc(1 * var(--padding_base_value)));
+}
+
+/* TWITCH STYLE CHANGES */
+
+/* ICONS - Only changed some of them (mostly sources) rest fits */
+OBSBasic {
+    qproperty-imageIcon: url(theme:twitch/sources/image.svg);
+    qproperty-colorIcon: url(theme:twitch/sources/brush.svg);
+    qproperty-slideshowIcon: url(theme:twitch/sources/slideshow.svg);
+    qproperty-audioInputIcon: url(theme:twitch/sources/microphone.svg);
+    qproperty-audioOutputIcon: url(theme:twitch/settings/audio.svg);
+    qproperty-desktopCapIcon: url(theme:twitch/settings/video.svg);
+    qproperty-windowCapIcon: url(theme:twitch/sources/window.svg);
+    qproperty-gameCapIcon: url(theme:twitch/sources/gamepad.svg);
+    qproperty-cameraIcon: url(theme:twitch/sources/camera.svg);
+    qproperty-textIcon: url(theme:twitch/sources/text.svg);
+    qproperty-mediaIcon: url(theme:twitch/sources/media.svg);
+    qproperty-browserIcon: url(theme:twitch/sources/globe.svg);
+    qproperty-groupIcon: url(theme:twitch/sources/group.svg);
+    qproperty-sceneIcon: url(theme:twitch/sources/scene.svg);
+    qproperty-defaultIcon: url(theme:twitch/sources/default.svg);
+    qproperty-audioProcessOutputIcon: url(theme:twitch/sources/windowaudio.svg);
+}
+
+* [themeID="revertIcon"] {
+    qproperty-icon: url(theme:twitch/revert.svg);
+}
+
+QDockWidget {
+	titlebar-close-icon: url(theme:twitch/close.svg);
+	titlebar-normal-icon: url(theme:twitch/popout.svg);
+}
+
+/* STYLES */
+QWidget {
+    selection-background-color: var(--primary_light);
+}
+
+OBSDock > QWidget {
+    background-color: transparent;
+    border-radius: 0px;
+    border: unset;
+}
+
+SceneTree::item,
+SourceTreeItem {
+    border-width: 0px;
+}
+/* SceneTree, SourceTree */
+QAbstractItemView { 
+	border: 1px solid var(--primary);
+    border-radius: 0px;
+    background: var(--grey8);
+}
+
+/* Scene Tree, Source Tree, border hover */
+QMenu::item:hover,
+QListWidget::item:hover,
+SceneTree::item:hover,
+SourceTree::item:hover,
+QMenu::item:selected:hover,
+QListWidget::item:selected:hover,
+SceneTree::item:selected:hover,
+SourceTree::item:selected:hover {
+    border: 1px solid var(--primary);
+}
+
+/* Audio mixer */
+QStackedWidget#stackedMixerArea {
+    border: 1px solid var(--primary);
+    border-radius: 0px;
+}
+QStackedWidget#stackedMixerArea QWidget {
+    background-color: var(--grey8);
+    border: none;
+}
+/* ----------- */
+
+/* Group Box (Settings) */
+QGroupBox {
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+	font-size: 12px;
+}
+
+QGroupBox::title {
+	border-radius: 5px;
+	border: 1px outset var(--primary);
+	margin-top: -4px;
+    margin-left: -4px;
+    padding: 2px;
+    background-color: var(--grey6);
+}
+
+QDockWidget {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+QDockWidget::title {
+    background-color: var(--title_bg);
+    border-bottom: 3px solid var(--primary); 
+    margin: 0px 1px;
+    text-align: left;
+}
+
+QDockWidget::close-button,
+QDockWidget::float-button {
+	icon-size: 12px;
+	subcontrol-position: bottom right;
+	subcontrol-origin: padding;
+	background: transparent;
+	border: none;
+}
+
+QDockWidget::close-button {
+    color: white;
+	right: 20px;
+}
+
+QStatusBar {
+    background-color: var(--bg_window);
+}
+
+QListWidget,
+QMenu,
+SceneTree,
+SourceTree {
+    padding: 0px;
+}
+
+QListWidget::item,
+SourceTreeItem,
+QMenu::item,
+SceneTree::item {
+    border-radius: 0px;
+    padding: 1px 0px;
+}
+
+SourceTree::item {
+    border-radius: 0px;
+}
+
+QToolButton,
+QPushButton[toolButton="true"] {
+    background-color: var(--grey7);
+    border-color: var(--bg_window);
+    padding: 2px;
+}
+
+QPushButton[toolButton="true"]:hover {
+    background-color: var(--primary);
+}
+
+QPushButton:checked:hover,
+QPushButton:checked:focus {
+    border-color: var(--primary);
+}
+
+QPushButton:checked {
+    border: 0;
+}
+
+#controlsFrame QPushButton {
+    max-height: 25px;
+    height: 25px;
+}
+
+QTabBar::tab {
+    border-color: var(--tab_bg);
+    padding: 3px 6px;
+}
+
+/* Scroll bar */
+::corner {
+    background-color: var(--grey6);
+    border: none;
+}
+
+QScrollBar:vertical {
+    background-color: var(--grey7);
+    width: 14px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: var(--primary_light); 
+    min-height: 20px;
+    margin: 1px;
+    border-radius: 2px;
+    border-width: 1px;
+    border: 1px solid var(--primary); 
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical, QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    border: none;
+    background: none;
+    color: none;
+}
+
+QScrollBar:horizontal {
+    background-color: var(--grey7);
+    height: 14px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: var(--primary);
+    min-width: 20px;
+    margin: 2px;
+    border-radius: 3px;
+    border-width: 1px;
+    border: 1px solid var(--grey7);
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    border: none;
+    background: none;
+}
+
+QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    border: none;
+    background: none;
+    color: none;
+}
+/* ---------------- */
+
+OBSHotkeyLabel[hotkeyPairHover=true] {
+    color: var(--primary);
+}
+
+OBSBasicSettings QListWidget::item {
+    padding: 2px;
+}
+
+* [frameShape="1"], * [frameShape="2"], * [frameShape="3"], * [frameShape="4"], * [frameShape="5"], * [frameShape="6"] {
+    border: 1px solid var(--primary);
+}
+
+/* Primary Control Button Checked Coloring */
+#streamButton:!hover:!pressed:checked,
+#recordButton:!hover:!pressed:checked,
+#replayBufferButton:!hover:!pressed:checked,
+#virtualCamButton:!hover:!pressed:checked,
+#modeSwitch:!hover:!pressed:checked,
+#broadcastButton:!hover:!pressed:checked {
+    background: var(--button_pressed);
+}
+
+#contextContainer {
+  background-color: var(--bg_window);
+}
+
+* [themeID="previewProgramLabels"] {
+    font-size: var(--font_base);
+    font-weight: normal;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+/* CLASSIC CHANGES */
+
+/* Top Menu Bar Items */
+/* default menu separator */
+QMenu::separator {
+    height: 2px; 
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 var(--grey7), stop:1 var(--grey5));  
+}
+
+QMenuBar::item:selected {
+    background: var(--primary);
+}
+QMenu::item {
+    padding: var(--padding_menu_y) var(--padding_menu);
+}
+
+QGroupBox {
+    background: var(--bg_window);
+    border: 1px solid var(--border_color);
+}
+
+QTabWidget::pane {
+    border-width: 1px;
+}
+
+QComboBox::drop-down,
+QDateTimeEdit::drop-down {
+    border:none;
+    width: 32px;
+    background-color: var(--primary);
+}
+
+QComboBox:hover,
+QComboBox:focus,
+QDateTimeEdit:hover,
+QDateTimeEdit:selected {
+    background-color: var(--input_bg_hover);
+}
+
+QComboBox:on,
+QDateTimeEdit:on,
+QComboBox:editable:focus {
+    background-color: var(--input_bg_focus);
+}
+
+QLineEdit,
+QTextEdit,
+QPlainTextEdit {
+    background-color: var(--input_bg_focus);
+    padding-left: 8px;
+    border: 0;
+}
+
+QLineEdit:hover,
+QTextEdit:hover,
+QPlainTextEdit:hover {
+    background-color: var(--input_bg_focus);
+}
+
+/* Fix the up/down buttons for the selector input arrows */
+QSpinBox::up-button,
+QDoubleSpinBox::up-button {
+    subcontrol-origin: padding;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 32px;
+    border-left: 1px solid var(--grey6);
+    border-radius: 0px;
+}
+
+QSpinBox::down-button,
+QDoubleSpinBox::down-button {
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right; /* position at the bottom right corner */
+
+    width: 32px;
+    border-left: 1px solid var(--grey6);
+    border-top: 1px solid var(--grey6);
+    border-radius: 0px;
+    margin-top: -1px;
+}
+
+QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {
+    border-bottom-right-radius: 4px;
+}
+QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover {
+    border-top-right-radius: 4px;
+}
+
+QSpinBox,
+QDoubleSpinBox {
+    background-color: var(--input_bg_focus);
+    border-width: 0px;
+    padding-left: 8px;
+    height: var(--input_height);
+    max-height: var(--input_height);
+}
+
+QSpinBox:hover,
+QDoubleSpinBox:hover {
+    background-color: var(--input_bg_focus);
+}
+
+QSpinBox::up-button:disabled,
+QSpinBox::up-button:off,
+QDoubleSpinBox::up-button:disabled,
+QDoubleSpinBox::up-button:off {
+    margin-top: 0px;
+}
+
+QSpinBox::down-button:disabled,
+QSpinBox::down-button:off,
+QDoubleSpinBox::down-button:disabled,
+QDoubleSpinBox::down-button:off {
+    margin-bottom: 0px;
+}
+/* ------------- */
+
+OBSBasicStatusBar {
+    margin-top: 4px;
+    border-top: 1px solid var(--border_color_grey);
+}
+
+StatusBarWidget > QFrame {
+    margin-top: 1px;
+    border: 0px solid var(--border_color_grey);
+    border-left-width: 1px;
+    padding: 0px 8px 2px;
+}
+
+OBSBasicSettings #PropertiesContainer {
+    background-color: var(--bg_window);
+}
+
+/* Fix Warning position */
+
+QLabel#audioMsg {
+    margin-left: 10px;
+}
+QLabel#audioMsg_2 {
+    margin-left: 15px;
+}
+
+/* Volume Bar color */
+QSlider::sub-page:horizontal {
+    background-color: var(--primary);
+    border-radius: 2px;
+}
+
+QSlider::add-page:vertical {
+    background-color: var(--primary);
+    border-radius: 2px;
+}
+
+/* Options button in Audio Mixer */ 
+#stackedMixerArea QPushButton {
+    min-width: var(--icon_base_mixer);
+    width: var(--icon_base_mixer);
+    height: var(--icon_base_mixer);
+    icon-size: var(--icon_base_mixer), var(--icon_base_mixer);
+}
+
+#stackedMixerArea QPushButton:!hover {
+    background-color: var(--grey6);
+    border: none;
+}
+
+#stackedMixerArea QPushButton:hover {
+    background-color: var(--primary);
+    border: none;
+}
+
+#stackedMixerArea {
+    border-bottom: unset;
+}
+
+/* Mute button in Audio Mixer */
+MuteCheckBox::indicator,
+MuteCheckBox::indicator:unchecked {
+    background-color: var(--grey6);
+    min-width: var(--icon_base_mixer);
+    border: none;
+    width: var(--icon_base_mixer);
+    height: var(--icon_base_mixer);
+    icon-size: var(--icon_base_mixer), var(--icon_base_mixer);
+}
+
+MuteCheckBox::indicator:checked {
+    background-color: var(--grey6);
+}
+
+MuteCheckBox::indicator:checked:hover,
+MuteCheckBox::indicator:unchecked:hover {
+    background-color: var(--primary);
+}
+
+MuteCheckBox::indicator:hover,
+MuteCheckBox::indicator:unchecked:hover {
+    icon-size: var(--icon_base_mixer), var(--icon_base_mixer);
+    border: none;
+}
+
+MuteCheckBox::indicator:checked {
+    image: url(theme:twitch/mute.svg);
+}
+
+MuteCheckBox::indicator:indeterminate {
+    image: url(theme:twitch/unassigned.svg);
+}
+
+MuteCheckBox::indicator:unchecked {
+    image: url(theme:twitch/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:unchecked:hover {
+    image: url(theme:twitch/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:unchecked:focus {
+    image: url(theme:twitch/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:checked:hover {
+    image: url(theme:twitch/mute.svg);
+}
+
+MuteCheckBox::indicator:checked:focus {
+    image: url(theme:twitch/mute.svg);
+}
+
+MuteCheckBox::indicator:checked:disabled {
+    image: url(theme:twitch/mute.svg);
+}
+
+MuteCheckBox::indicator:unchecked:disabled {
+    image: url(theme:twitch/settings/audio.svg);
+}
