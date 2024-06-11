@@ -31,7 +31,7 @@
     --padding_base_value: 0.25; 
 
     /* OS Fixes */
-    --os_mac_font_base_value: 11;
+    --os_mac_font_base_value: 8;
 
     /* Default changes */
     --icon_base: calc(6px + var(--font_base_value));
@@ -39,7 +39,8 @@
     --padding_wide: calc(18px + calc(0.25 * var(--padding_base_value)));
     --padding_menu: calc(8px + calc(1 * var(--padding_base_value)));
 
-    --input_height_base: calc(1px + calc(var(--input_font_scale) + var(--input_font_padding)));
+    --input_height_base: calc(3px + calc(var(--input_font_scale) + var(--input_font_padding)));
+    --input_font_scale: calc(var(--font_base_value) * 2.2);
 
     --border_color: var(--primary);
     --border_color_grey: var(--grey7);
@@ -416,36 +417,6 @@ QPlainTextEdit:hover {
     background-color: var(--input_bg_focus);
 }
 
-/* Fix the up/down buttons for the selector input arrows */
-QSpinBox::up-button,
-QDoubleSpinBox::up-button {
-    subcontrol-origin: padding;
-    subcontrol-position: top right; /* position at the top right corner */
-
-    width: 32px;
-    border-left: 1px solid var(--grey6);
-    border-radius: 0px;
-}
-
-QSpinBox::down-button,
-QDoubleSpinBox::down-button {
-    subcontrol-origin: padding;
-    subcontrol-position: bottom right; /* position at the bottom right corner */
-
-    width: 32px;
-    border-left: 1px solid var(--grey6);
-    border-top: 1px solid var(--grey6);
-    border-radius: 0px;
-    margin-top: -1px;
-}
-
-QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {
-    border-bottom-right-radius: 4px;
-}
-QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover {
-    border-top-right-radius: 4px;
-}
-
 QSpinBox,
 QDoubleSpinBox {
     background-color: var(--input_bg_focus);
@@ -464,15 +435,63 @@ QSpinBox::up-button:disabled,
 QSpinBox::up-button:off,
 QDoubleSpinBox::up-button:disabled,
 QDoubleSpinBox::up-button:off {
-    margin-top: 0px;
+    border-top: 1px solid var(--grey4); 
+    border-left: 1px solid var(--grey4); 
+    border-right: 1px solid var(--grey4);
+    border-bottom: none;
 }
 
 QSpinBox::down-button:disabled,
 QSpinBox::down-button:off,
 QDoubleSpinBox::down-button:disabled,
 QDoubleSpinBox::down-button:off {
-    margin-bottom: 0px;
+    border-bottom: 1px solid var(--grey4); 
+    border-left: 1px solid var(--grey4); 
+    border-right: 1px solid var(--grey4);
+    border-top: none;
 }
+
+/* Fix the up/down buttons for the selector input arrows */
+QSpinBox::up-button,
+QDoubleSpinBox::up-button {
+    subcontrol-origin: padding;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 15px;
+
+    border-top: 1px solid var(--primary); 
+    border-left: 1px solid var(--primary); 
+    border-right: 1px solid var(--primary);
+    border-bottom: none;
+    background-color: var(--primary);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+QSpinBox::down-button,
+QDoubleSpinBox::down-button {
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right; /* position at the bottom right corner */
+
+    width: 15px;
+    margin-top: -1px; /* Adjustment to remove middle border empty space between arrows */
+    
+    border-bottom: 1px solid var(--primary); 
+    border-left: 1px solid var(--primary); 
+    border-right: 1px solid var(--primary);
+    border-top: none;
+    background-color: var(--primary);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+QSpinBox::up-arrow { 
+    width: 12px; height: 12px;
+}
+QSpinBox::down-arrow {
+    width: 12px; height: 12px;
+}
+
 /* ------------- */
 
 OBSBasicStatusBar {
