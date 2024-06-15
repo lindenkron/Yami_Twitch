@@ -178,6 +178,7 @@ QGroupBox {
     border: 1px solid var(--primary);
     border-radius: 5px;
 	font-size: 12px;
+    background: var(--bg_window);
 }
 
 QGroupBox::title {
@@ -333,7 +334,39 @@ OBSBasicSettings QListWidget::item {
     padding: 2px;
 }
 
-* [frameShape="1"], * [frameShape="2"], * [frameShape="3"], * [frameShape="4"], * [frameShape="5"], * [frameShape="6"] {
+/* * [frameShape="1"], * [frameShape="2"], * [frameShape="3"], * [frameShape="4"], * [frameShape="5"], * [frameShape="6"] {
+    border: 1px solid var(--primary);
+} */
+
+OBSBasicSettings [frameShape="1"], OBSBasicSettings [frameShape="2"], OBSBasicSettings [frameShape="3"], OBSBasicSettings [frameShape="4"], OBSBasicSettings [frameShape="5"], OBSBasicSettings [frameShape="6"] {
+    border: 1px solid var(--primary);
+}
+
+
+/* Advanced Scene Switcher hotfixes */
+
+advss--AdvSceneSwitcher QWidget#conditionsList, advss--AdvSceneSwitcher QWidget#actionsList- {
+    border: none;
+}
+
+advss--MacroSegmentList QWidget {
+    background: var(--grey7);
+    border-radius: 5px;
+}
+
+/* TABLEFIX - Fix the weird awkward header of "Custom Browser Docks" */
+OBSExtraBrowsers #table > QHeaderView {
+    background: var(--primary_light);
+    border: none;
+}
+OBSExtraBrowsers #table > QWidget #extraPanelDelete {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 1px;
+}
+OBSExtraBrowsers > QTableView {
+    gridline-color: var(--grey6);
+    background: var(--grey7);
     border: 1px solid var(--primary);
 }
 
@@ -372,11 +405,6 @@ QMenuBar::item:selected {
 }
 QMenu::item {
     padding: var(--padding_menu_y) var(--padding_menu);
-}
-
-QGroupBox {
-    background: var(--bg_window);
-    border: 1px solid var(--border_color);
 }
 
 QTabWidget::pane {
@@ -485,10 +513,12 @@ QDoubleSpinBox::down-button {
     border-bottom-right-radius: 2px;
 }
 
-QSpinBox::up-arrow { 
+QSpinBox::up-arrow,
+QDoubleSpinBox::up-arrow { 
     width: 12px; height: 12px;
 }
-QSpinBox::down-arrow {
+QSpinBox::down-arrow,
+QDoubleSpinBox::down-arrow {
     width: 12px; height: 12px;
 }
 
