@@ -7,7 +7,6 @@
 }
 
 @OBSThemeVars {
-    --pink: rgb(255,0,255);
     --grey1: rgb(200,199,200);
     --grey2: rgb(160,160,160);
     --grey3: rgb(120,120,120);
@@ -27,7 +26,7 @@
 
 
     /* Layout */
-    --font_base_value: 8;
+    --font_base_value: 10;
     --spacing_base_value: 4;
     --padding_base_value: 0.25; 
 
@@ -265,7 +264,7 @@ QSlider::sub-page:horizontal[themeID="tBarSlider"] {
 QGroupBox {
     border: 1px solid var(--primary_light);
     border-radius: 5px;
-	font-size: 12px;
+	font-size: var(--font_base);
     background: var(--bg_window);
 }
 
@@ -279,7 +278,7 @@ QGroupBox::title {
 }
 
 QDockWidget {
-    font-size: 12px;
+	font-size: var(--font_base);
     font-weight: normal;
 }
 
