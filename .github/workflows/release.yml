@@ -1,0 +1,44 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'Yami_Twitch_*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up variables
+        id: vars
+        run: echo "RELEASE_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Zip specified files
+        run: |
+          cd $GITHUB_WORKSPACE
+          zip -r ${{ env.RELEASE_NAME }}.zip Yami_Twitch.ovt Twitch
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ env.RELEASE_NAME }}.zip
+          asset_name: ${{ env.RELEASE_NAME }}.zip
+          asset_content_type: application/zip
