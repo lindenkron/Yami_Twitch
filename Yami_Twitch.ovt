@@ -24,14 +24,15 @@
     --primary_dark: rgb(105,33,214);
     --primary_light: rgb(145,70,255);
 
-
     /* Layout */
     --font_base_value: 10;
     --spacing_base_value: 4;
     --padding_base_value: 0.25; 
+    
+    --font_small: calc(0.8pt * var(--font_base_value));
 
     /* OS Fixes */
-    --os_mac_font_base_value: 8;
+    --os_mac_font_base_value: 10;
 
     /* Default changes */
     --icon_base: calc(6px + var(--font_base_value));
@@ -40,7 +41,6 @@
     --padding_menu: calc(8px + calc(1 * var(--padding_base_value)));
 
     --input_height_base: calc(3px + calc(var(--input_font_scale) + var(--input_font_padding)));
-    --input_font_scale: calc(var(--font_base_value) * 2.2);
 
     --border_color: var(--primary_light);
     --border_color_grey: var(--grey7);
@@ -485,6 +485,7 @@ QMenuBar::item:selected {
 }
 QMenu::item {
     padding: var(--padding_menu_y) var(--padding_menu);
+    font-size: var(--font_base);
     border-radius: 0;
 }
 QTabWidget::pane {
@@ -655,6 +656,7 @@ QSlider::add-page:vertical {
 
 #stackedMixerArea OBSSourceLabel {
     padding-bottom: 2px;
+    font-size: var(--font_small);
 }
 
 #stackedMixerArea QPushButton {
