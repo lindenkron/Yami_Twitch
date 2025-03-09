@@ -16,6 +16,8 @@
     --grey7: rgb(14,14,16);
     --grey8: rgb(11,10,11);
 
+    --grey_disabled: rgb(44,44,44);
+
     --bg_window: var(--grey6);
     --bg_preview: var(--grey8);
     --bg_base: var(--grey7);
@@ -23,6 +25,7 @@
     --primary: rgb(120,44,232);
     --primary_dark: rgb(105,33,214);
     --primary_light: rgb(145,70,255);
+
 
     /* Layout */
     --font_base_value: 10;
@@ -39,8 +42,6 @@
 
     --padding_wide: calc(18px + calc(0.25 * var(--padding_base_value)));
     --padding_menu: calc(8px + calc(1 * var(--padding_base_value)));
-
-    --input_height_base: calc(3px + calc(var(--input_font_scale) + var(--input_font_padding)));
 
     --border_color: var(--primary_light);
     --border_color_grey: var(--grey7);
@@ -65,11 +66,17 @@
 
     --title_bg: var(--grey6);
 
-    --button_bg: var(--primary_light);
-    --button_bg_hover: var(--primary);
+    --button_bg: var(--primary);
+    --button_bg_hover: var(--primary_light);
     --button_bg_down: var(--grey7);
     --button_bg_disabled: var(--grey5);
-    --button_pressed: var(--grey5);
+
+    /* Grey QToolButton */
+    --button_grey_bg: var(--grey7);
+    --button_grey_bg_hover: var(--primary_light);
+    --button_grey_bg_down: var(--grey8);
+    --button_grey_bg_disabled: var(--grey-disabled);
+    --button_grey_pressed: var(--grey8);
 
     --button_border: var(--button_bg);
     --button_border_hover: var(--primary_light);
@@ -248,7 +255,6 @@ QStackedWidget#stackedMixerArea QWidget {
 
 /* Tooltip fixes */
 QToolTip {
-    /* background-color: orange; */
     padding: 4px;
     color: var(--text);
     border: 1px solid var(--primary);
@@ -307,44 +313,130 @@ QStatusBar {
     background-color: var(--bg_window);
 }
 
+/* QToolButton, and anything that is supposed to be a QToolButton - but isn't yet  */
 QToolButton,
-QPushButton[toolButton="true"] {
-    background-color: var(--grey7);
-    border-color: var(--grey8);
+QPushButton:checked,
+QPushButton[toolButton="true"],
+.btn-tool {
+    min-width: var(--icon_base);
+    height: var(--icon_base);
+    width: var(--icon_base);
+    background-color: var(--button_grey_bg);
+    border-color: var(--border_color_grey);
     padding: 2px;
+    color: var(--grey1) !important;
 }
 
 QToolButton:disabled,
-QPushButton[toolButton="true"]:disabled {
-    border-color: rgb(44,44,44);
-}
-QPushButton[toolButton="true"]:hover {
-    background-color: var(--primary_light);
+QPushButton[toolButton="true"]:disabled,
+.btn-tool:disabled {
+    border-color: var(--grey_disabled)
 }
 
+QToolButton:hover,
+QPushButton[toolButton="true"]:hover,
+.btn-tool:hover {
+    border-color: var(--button_bg_hover);
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::: */
+/* :::: Advanced Scene Switcher hotfixes :::: */
+/* :::::::::::::::::::::::::::::::::::::::::: */
+
+/* Triple dot in Adv-ss :: A checked button shouldn't be grey */
+/* Also fixes Cogwheel with ::flat */
+QPushButton::flat,
+QPushButton:checked,
+QPushButton:checked:focus,
+QPushButton:unchecked,
+QPushButton:unchecked:focus {
+    border-color: var(--button_border);
+    background-color: var(--button_bg);
+}
+
+QPushButton::flat:hover,
 QPushButton:checked:hover,
-QPushButton:checked:focus {
-    border-color: var(--primary_light);
+QPushButton:unchecked:hover {
+    border-color: var(--button_border_hover);
+    background-color: var(--button_bg_hover);
 }
 
-QPushButton:checked {
-    border: 0;
+QPushButton:checked:pressed,
+QPushButton:unchecked:pressed,
+QPushButton::flat:pressed {
+    background-color: var(--button_bg_down);
 }
 
-QPushButton:disabled {
-    border-color: rgb(44,44,44);
+/* For the border around the condition/actions segment */ 
+advss--AdvSceneSwitcher #conditionsList,
+advss--AdvSceneSwitcher #actionsList {
+    border: 1px solid var(--primary); 
 }
 
+/* Hopefully temporary fix until I figure out how to color a QDrag image widget */
+advss--AdvSceneSwitcher QLineEdit,
+advss--AdvSceneSwitcher QTextEdit, 
+advss--AdvSceneSwitcher QPlainTextEdit,
+advss--AdvSceneSwitcher QComboBox {
+    border: 1px solid var(--grey4);
+    background-color: var(--grey8);
+}
+
+advss--AdvSceneSwitcher QLineEdit:hover,
+advss--AdvSceneSwitcher QTextEdit:hover, 
+advss--AdvSceneSwitcher QPlainTextEdit:hover,
+advss--AdvSceneSwitcher QComboBox:hover {
+    border: 1px solid var(--primary);
+}
+
+/* Specifically the variable input fields in adv-ss */
+/* Might get fixed in future Advance Scene Switcher when setting Widgets frameShape to NoFrame */
+advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"] {
+    border: 1px solid var(--grey4);
+    background-color: var(--grey7);
+}
+advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:hover,
+advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:focus {
+    border: 1px solid var(--primary);
+    background-color: var(--grey7);
+}
+
+/* ----------- */
+
+/* OBSBasic primary controls buttons, bottom right */
 #controlsFrame QPushButton {
     max-height: 25px;
     height: 25px;
 }
 
-QTabBar::tab {
-    border-color: var(--tab_bg);
-    padding: 3px 6px;
+/* Filter buttons (larger than normal tool buttons) */
+OBSBasicFilters #widget QPushButton,
+OBSBasicFilters #widget_2 QPushButton {
+    min-width: var(--icon_base_mixer);
+    height: var(--icon_base_mixer);
+    width: var(--icon_base_mixer);
+    border: 1px solid var(--button_border);
+}
+OBSBasicFilters #widget QPushButton:focus,
+OBSBasicFilters #widget_2 QPushButton:focus {
+    background-color: var(--button_bg);
+}
+OBSBasicFilters #widget QPushButton:hover,
+OBSBasicFilters #widget_2 QPushButton:hover {
+    background-color: var(--button_bg_hover);
+    border: 1px solid var(--button_border_hover);
+}
+OBSBasicFilters #widget QPushButton:pressed,
+OBSBasicFilters #widget_2 QPushButton:pressed {
+    background-color: var(--button_grey_bg);
+    border: 1px solid var(--button_border_hover);
 }
 
+
+QTabBar::tab {
+    border: none;
+    padding: 3px 6px;
+}
 /* Scroll bar */
 QScrollBar {
     background-color: var(--grey6);
@@ -356,18 +448,18 @@ QScrollBar::handle {
     background-color: var(--primary); 
     border: 1px solid var(--primary_light); 
     margin: 1px;
-    width: 14px;
-    height: 14px;
 }
 
-QScrollBar::handle:hover, QScrollBar::handle:active {
-    background-color: var(--primary); 
+QScrollBar::handle:hover, QScrollBar::handle:focus {
+    background-color: var(--primary_light); 
+    border: 1px solid var(--primary_light); 
+}
+QScrollBar::handle:pressed {
+    background-color: var(--primary_light); 
     border: 1px solid var(--primary_light); 
 }
 
 QScrollBar:vertical, QScrollBar:horizontal {
-    height: 14px;
-    width: 14px;
 }
 
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
@@ -394,25 +486,13 @@ OBSBasicSettings QListWidget::item {
     border-radius: 0;
     padding: 2px;
 }
-/* Restyle the filters list to fit the theme */
-OBSBasicFilters QListWidget {
-    padding: 0px;
-}
-OBSBasicFilters QListWidget::item {
-    border-radius: 0;
-    padding: 0px;
-}
-OBSBasicFilters #effectFilters {
-    border: 1px solid var(--primary);
-}
 
-OBSBasicFilters #widget QPushButton,
-OBSBasicFilters #widget_2 QPushButton {
-    padding: 1px;
-    min-width: 20px;
-}
-
-OBSBasicSettings [frameShape="1"], OBSBasicSettings [frameShape="2"], OBSBasicSettings [frameShape="3"], OBSBasicSettings [frameShape="4"], OBSBasicSettings [frameShape="5"], OBSBasicSettings [frameShape="6"] {
+OBSBasicSettings [frameShape="1"],
+OBSBasicSettings [frameShape="2"],
+OBSBasicSettings [frameShape="3"],
+OBSBasicSettings [frameShape="4"],
+OBSBasicSettings [frameShape="5"],
+OBSBasicSettings [frameShape="6"] {
     border: 1px solid var(--primary_light);
 }
 
@@ -423,15 +503,15 @@ OBSBasicAdvAudio #scrollArea {
     border-radius: 0px;
 }
 
-/* Advanced Scene Switcher hotfixes */
+/* ---------------------------- */
 
-advss--AdvSceneSwitcher QWidget#conditionsList, advss--AdvSceneSwitcher QWidget#actionsList- {
-    border: none;
+#previewScalePercent {
+    padding-bottom: 2px;
 }
 
-advss--MacroSegmentList QWidget {
-    background: var(--grey7);
-    border-radius: 5px;
+#previewScalingMode {
+    margin-left: 5px;
+    padding: 0px 0px 2px 2px;
 }
 
 /* TABLEFIX - Fix the weird awkward header of "Custom Browser Docks" */
@@ -457,7 +537,7 @@ OBSExtraBrowsers > QTableView {
 #virtualCamButton:!hover:!pressed:checked,
 #modeSwitch:!hover:!pressed:checked,
 #broadcastButton:!hover:!pressed:checked {
-    background: var(--button_pressed);
+    background: var(--button_bg_down);
 }
 
 #contextContainer {
@@ -488,19 +568,27 @@ QMenu::item {
     font-size: var(--font_base);
     border-radius: 0;
 }
+
+QMenu::item {
+    padding-right: 20px;
+}
+
 QTabWidget::pane {
     border-width: 1px;
 }
 
 QComboBox::drop-down,
-QDateTimeEdit::drop-down {
+QDateTimeEdit::drop-down,
+QComboBox::drop-down:editable,
+QDateTimeEdit::drop-down:editable  {
     border:none;
     width: 32px;
     background-color: var(--input_bg_arrow);
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
 QComboBox:hover,
-QComboBox:focus,
 QDateTimeEdit:hover,
 QDateTimeEdit:selected {
     background-color: var(--input_bg_hover);
@@ -510,6 +598,7 @@ QComboBox:on,
 QDateTimeEdit:on,
 QComboBox:editable:focus {
     background-color: var(--input_bg_focus);
+    border-radius: 2px;
 }
 
 QLineEdit,
@@ -659,55 +748,51 @@ QSlider::add-page:vertical {
     font-size: var(--font_small);
 }
 
+/* Options button in mixer */
 #stackedMixerArea QPushButton {
-    background- color: unset;
-}
-
-#stackedMixerArea QPushButton {
-    min-width: var(--icon_base_mixer);
     width: var(--icon_base_mixer);
     height: var(--icon_base_mixer);
-    icon-size: var(--icon_base_mixer), var(--icon_base_mixer);
-}
-
-#stackedMixerArea QPushButton:!hover {
-    background-color: var(--grey6);
     padding: 2px;
 }
 
-#stackedMixerArea QPushButton:hover  {
-    background-color: var(--primary_light);
-    border: none;
+#stackedMixerArea QPushButton:focus {
+    border: 1px solid var(--primary_light);
 }
 
 /* Mute button in Audio Mixer */
-MuteCheckBox::indicator,
-MuteCheckBox::indicator:unchecked {
-    background-color: var(--grey6);
-    border: none;
-    padding: 2px;
-    min-width: var(--icon_base_mixer);
+/* UNMUTED */
+.indicator-mute::indicator:unchecked,
+.indicator-mute::indicator:unchecked:focus {
     width: var(--icon_base_mixer);
     height: var(--icon_base_mixer);
-    icon-size: var(--icon_base_mixer), var(--icon_base_mixer);
+    background-color: var(--button_bg);
+    border-color: var(--button_border);
+}
+.indicator-mute::indicator:unchecked:pressed {
+    background-color: var(--button_bg_down);
+}
+.indicator-mute::indicator:unchecked:hover {
+    background-color:  var(--button_bg_hover);
+    border-color: var(--button_border_hover);
 }
 
-MuteCheckBox::indicator:checked {
-    padding: 2px;
+/* MUTED */
+.indicator-mute::indicator,
+.indicator-mute::indicator:focus {
+    width: var(--icon_base_mixer);
+    height: var(--icon_base_mixer);
     background-color: var(--grey6);
+    border-color: var(--grey4);
+}
+.indicator-mute::indicator:hover {
+    background-color: var(--grey5);
+    border-color: var(--grey3);
+}
+.indicator-mute::indicator:unchecked:pressed {
+    background-color: var(--button_bg_down);
 }
 
-MuteCheckBox::indicator:checked:hover,
-MuteCheckBox::indicator:unchecked:hover {
-    padding: 2px;
-    background-color: var(--primary_light);
-}
-
-MuteCheckBox::indicator:hover,
-MuteCheckBox::indicator:unchecked:hover {
-    icon-size: var(--icon_base_mixer), var(--icon_base_mixer);
-    border: none;
-}
+/* ------------------------- */
 
 MuteCheckBox::indicator:checked {
     image: url(theme:twitch/mute.svg);
@@ -744,6 +829,7 @@ MuteCheckBox::indicator:checked:disabled {
 MuteCheckBox::indicator:unchecked:disabled {
     image: url(theme:twitch/settings/audio.svg);
 }
+
 
 /* God this was way more complicated and time consuming than I'd ever imagined */
 /* Ty, WARCHAMP7 */
