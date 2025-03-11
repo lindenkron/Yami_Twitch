@@ -374,6 +374,10 @@ QPushButton::flat:pressed {
     background-color: var(--button_bg_down);
 }
 
+QPushButton:disabled {
+    border-color: var(--border_color_grey);
+}
+
 /* For the border around the condition/actions segment */ 
 advss--AdvSceneSwitcher #conditionsList,
 advss--AdvSceneSwitcher #actionsList {
