@@ -1,3 +1,5 @@
+/* Thanks for help, @WARCHAMP & @WarmUpTill */
+/* Original idea and inspiration based off of Twitchy by derMiepz */
 @OBSThemeMeta {
     name: 'Twitch';
     id: 'com.obsproject.Yami.Twitch';
@@ -829,7 +831,3 @@ MuteCheckBox::indicator:checked:disabled {
 MuteCheckBox::indicator:unchecked:disabled {
     image: url(theme:twitch/settings/audio.svg);
 }
-
-
-/* God this was way more complicated and time consuming than I'd ever imagined */
-/* Ty, WARCHAMP7 */
