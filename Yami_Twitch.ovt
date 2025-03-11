@@ -285,6 +285,11 @@ QGroupBox::title {
     background-color: var(--grey6);
 }
 
+/* Fixing the Accessibility title having 1 more pixel, due to checkbox in title */
+QGroupBox#colorsGroupBox::title {
+    margin-top: -3px;
+}
+
 QDockWidget {
 	font-size: var(--font_base);
     font-weight: normal;
