@@ -45,7 +45,7 @@
     --padding_wide: calc(18px + calc(0.25 * var(--padding_base_value)));
     --padding_menu: calc(8px + calc(1 * var(--padding_base_value)));
 
-    --border_color: var(--primary_light);
+    --border_color: transparent;
     --border_color_grey: var(--grey7);
 
     --border_radius: 2px;
