@@ -248,9 +248,9 @@ QStackedWidget#stackedMixerArea {
     border: 1px solid var(--purple1);
     border-radius: 0px;
 }
-QStackedWidget#stackedMixerArea QWidget {
-	background-color: var(--grey8);
-	border: none;
+
+#vVolumeWidgets {
+    background: var(--grey8);
 }
 /* ----------- */
 
