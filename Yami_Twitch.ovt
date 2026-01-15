@@ -20,14 +20,13 @@
 
     --grey_disabled: rgb(44,44,44);
 
+    --purple1: #9146ff;
+    --purple2: #782ce8;
+    --purple3: #6921ff;
+
     --bg_window: var(--grey6);
     --bg_preview: var(--grey8);
     --bg_base: var(--grey7);
-
-    --primary: rgb(120,44,232);
-    --primary_dark: rgb(105,33,214);
-    --primary_light: rgb(145,70,255);
-
 
     /* Layout */
     --font_base_value: 10;
@@ -52,47 +51,47 @@
     --border_radius_small: 0px;
     --border_radius_large: 0px;
 
-    --input_bg: var(--primary);
-    --input_bg_hover: var(--primary_light);
-    --input_bg_arrow: var(--primary);
+    --input_bg: var(--purple2);
+    --input_bg_hover: var(--purple1);
+    --input_bg_arrow: var(--purple2);
     --input_bg_focus: var(--grey8);
 
-    --list_item_bg_selected: var(--primary_light);
-    --list_item_bg_hover: var(--primary);
+    --list_item_bg_selected: var(--purple1);
+    --list_item_bg_hover: var(--purple2);
 
-    --input_border: var(--primary_light);
-    --input_border_hover: var(--primary);
-    --input_border_focus: var(--primary);
+    --input_border: var(--purple1);
+    --input_border_hover: var(--purple2);
+    --input_border_focus: var(--purple2);
 
     --spacing_input: var(--spacing_base);
 
     --title_bg: var(--grey6);
 
-    --button_bg: var(--primary);
-    --button_bg_hover: var(--primary_light);
+    --button_bg: var(--purple2);
+    --button_bg_hover: var(--purple1);
     --button_bg_down: var(--grey7);
     --button_bg_disabled: var(--grey5);
 
     /* Grey QToolButton */
     --button_grey_bg: var(--grey7);
-    --button_grey_bg_hover: var(--primary_light);
+    --button_grey_bg_hover: var(--purple1);
     --button_grey_bg_down: var(--grey8);
     --button_grey_bg_disabled: var(--grey-disabled);
     --button_grey_pressed: var(--grey8);
 
     --button_border: var(--button_bg);
-    --button_border_hover: var(--primary_light);
-    --button_border_focus: var(--primary_light);
+    --button_border_hover: var(--purple1);
+    --button_border_focus: var(--purple1);
 
-    --tab_bg: var(--primary);
-    --tab_bg_hover: var(--primary_light);
-    --tab_bg_down: var(--primary_light);
+    --tab_bg: var(--purple2);
+    --tab_bg_hover: var(--purple1);
+    --tab_bg_down: var(--purple1);
     --tab_bg_disabled: var(--grey8);
 
     --tab_border: var(--grey1);
     --tab_border_hover: var(--grey1);
     --tab_border_focus: var(--grey1);
-    --tab_border_selected: var(--primary_light);
+    --tab_border_selected: var(--purple1);
 
     --scrollbar: var(--grey4);
     --scrollbar_hover: var(--grey3);
@@ -139,7 +138,7 @@ QDockWidget {
 }
 
 QWidget {
-    selection-background-color: var(--primary);
+    selection-background-color: var(--purple2);
     /* font-family: 'PixelOperator'; */
 }
 
@@ -165,7 +164,7 @@ SceneTree {
 
 /* background on SceneTree & SourceTree */
 QAbstractItemView { 
-	border: 1px solid var(--primary_light);
+	border: 1px solid var(--purple1);
     border-radius: 0px;
     background: var(--grey8);
 }
@@ -207,7 +206,7 @@ QMenu::item:selected,
 QListWidget::item:selected,
 SceneTree::item:selected,
 SourceTree::item:selected {
-    background-color: var(--primary);
+    background-color: var(--purple2);
 }
 
 QMenu::item:hover,
@@ -218,8 +217,8 @@ QMenu::item:selected:hover,
 QListWidget::item:selected:hover,
 SceneTree::item:selected:hover,
 SourceTree::item:selected:hover {
-    background-color: var(--primary_light);
-    border: 1px solid var(--primary);
+    background-color: var(--purple1);
+    border: 1px solid var(--purple2);
 }
 
 QMenu::item:focus,
@@ -230,7 +229,7 @@ QMenu::item:selected:focus,
 QListWidget::item:selected:focus,
 SceneTree::item:selected:focus,
 SourceTree::item:selected:focus {
-    background-color: var(--primary_light);
+    background-color: var(--purple1);
     border: 1px solid var(--border_highlight);
 }
 
@@ -246,12 +245,12 @@ SceneTree::item:disabled:hover {
 
 /* Audio mixer */
 QStackedWidget#stackedMixerArea {
-    border: 1px solid var(--primary_light);
+    border: 1px solid var(--purple1);
     border-radius: 0px;
 }
 QStackedWidget#stackedMixerArea QWidget {
-    background-color: var(--grey8);
-    border: none;
+	background-color: var(--grey8);
+	border: none;
 }
 /* ----------- */
 
@@ -259,18 +258,18 @@ QStackedWidget#stackedMixerArea QWidget {
 QToolTip {
     padding: 4px;
     color: var(--text);
-    border: 1px solid var(--primary);
+    border: 1px solid var(--purple2);
     border-radius: 2px;
 }
 
 /* tBar color */
 QSlider::sub-page:horizontal[themeID="tBarSlider"] {
-    background: var(--primary_light);
+    background: var(--purple1);
 }
 
 /* Group Box (Settings) */
 QGroupBox {
-    border: 1px solid var(--primary_light);
+    border: 1px solid var(--purple1);
     border-radius: 5px;
 	font-size: var(--font_base);
     background: var(--bg_window);
@@ -278,7 +277,7 @@ QGroupBox {
 
 QGroupBox::title {
 	border-radius: 5px;
-	border: 1px outset var(--primary_light);
+	border: 1px outset var(--purple1);
 	margin-top: -4px;
     margin-left: -4px;
     padding: 2px;
@@ -297,7 +296,7 @@ QDockWidget {
 
 QDockWidget::title {
     background-color: var(--title_bg);
-    border-bottom: 3px solid var(--primary_light); 
+    border-bottom: 3px solid var(--purple1); 
     margin: 0px 1px;
     text-align: left;
 }
@@ -381,7 +380,7 @@ QPushButton:disabled {
 /* For the border around the condition/actions segment */ 
 advss--AdvSceneSwitcher #conditionsList,
 advss--AdvSceneSwitcher #actionsList {
-    border: 1px solid var(--primary); 
+    border: 1px solid var(--purple2); 
 }
 
 /* Hopefully temporary fix until I figure out how to color a QDrag image widget */
@@ -397,7 +396,7 @@ advss--AdvSceneSwitcher QLineEdit:hover,
 advss--AdvSceneSwitcher QTextEdit:hover, 
 advss--AdvSceneSwitcher QPlainTextEdit:hover,
 advss--AdvSceneSwitcher QComboBox:hover {
-    border: 1px solid var(--primary);
+    border: 1px solid var(--purple2);
 }
 
 /* Specifically the variable input fields in adv-ss */
@@ -408,7 +407,7 @@ advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"] {
 }
 advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:hover,
 advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:focus {
-    border: 1px solid var(--primary);
+    border: 1px solid var(--purple2);
     background-color: var(--grey7);
 }
 
@@ -456,18 +455,18 @@ QScrollBar {
 }
 
 QScrollBar::handle {
-    background-color: var(--primary); 
-    border: 1px solid var(--primary_light); 
+    background-color: var(--purple2); 
+    border: 1px solid var(--purple1); 
     margin: 1px;
 }
 
 QScrollBar::handle:hover, QScrollBar::handle:focus {
-    background-color: var(--primary_light); 
-    border: 1px solid var(--primary_light); 
+    background-color: var(--purple1); 
+    border: 1px solid var(--purple1); 
 }
 QScrollBar::handle:pressed {
-    background-color: var(--primary_light); 
-    border: 1px solid var(--primary_light); 
+    background-color: var(--purple1); 
+    border: 1px solid var(--purple1); 
 }
 
 QScrollBar:vertical, QScrollBar:horizontal {
@@ -490,7 +489,7 @@ QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal, QScrollBa
 /* ---------------- */
 
 OBSHotkeyLabel[hotkeyPairHover=true] {
-    color: var(--primary_light);
+    color: var(--purple1);
 }
 
 OBSBasicSettings QListWidget::item {
@@ -504,7 +503,7 @@ OBSBasicSettings [frameShape="3"],
 OBSBasicSettings [frameShape="4"],
 OBSBasicSettings [frameShape="5"],
 OBSBasicSettings [frameShape="6"] {
-    border: 1px solid var(--primary_light);
+    border: 1px solid var(--purple1);
 }
 
 /* Advanced Audio Properties */
@@ -527,7 +526,7 @@ OBSBasicAdvAudio #scrollArea {
 
 /* TABLEFIX - Fix the weird awkward header of "Custom Browser Docks" */
 OBSExtraBrowsers #table > QHeaderView {
-    background: var(--primary);
+    background: var(--purple2);
     border: none;
 }
 OBSExtraBrowsers #table > QWidget #extraPanelDelete {
@@ -538,7 +537,7 @@ OBSExtraBrowsers #table > QWidget #extraPanelDelete {
 OBSExtraBrowsers > QTableView {
     gridline-color: var(--grey6);
     background: var(--grey7);
-    border: 1px solid var(--primary_light);
+    border: 1px solid var(--purple1);
 }
 
 /* Primary Control Button Checked Coloring */
@@ -572,7 +571,7 @@ QMenu::separator {
 }
 
 QMenuBar::item:selected {
-    background: var(--primary_light);
+    background: var(--purple1);
 }
 QMenu::item {
     padding: var(--padding_menu_y) var(--padding_menu);
@@ -669,11 +668,11 @@ QDoubleSpinBox::up-button {
 
     width: 15px;
 
-    border-top: 1px solid var(--primary_light); 
-    border-left: 1px solid var(--primary_light); 
-    border-right: 1px solid var(--primary_light);
+    border-top: 1px solid var(--purple1); 
+    border-left: 1px solid var(--purple1); 
+    border-right: 1px solid var(--purple1);
     border-bottom: none;
-    background-color: var(--primary_light);
+    background-color: var(--purple1);
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
 }
@@ -686,11 +685,11 @@ QDoubleSpinBox::down-button {
     width: 15px;
     margin-top: -1px; /* Adjustment to remove middle border empty space between arrows */
     
-    border-bottom: 1px solid var(--primary_light); 
-    border-left: 1px solid var(--primary_light); 
-    border-right: 1px solid var(--primary_light);
+    border-bottom: 1px solid var(--purple1); 
+    border-left: 1px solid var(--purple1); 
+    border-right: 1px solid var(--purple1);
     border-top: none;
-    background-color: var(--primary_light);
+    background-color: var(--purple1);
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
 }
@@ -730,14 +729,19 @@ QLabel#audioMsg_2 {
     margin-left: 15px;
 }
 
+VolumeControl.volume-pinned .mixer-category {
+    background: var(--purple3); 
+    color: var(--text);
+}
+
 /* Volume Bar color */
 QSlider::sub-page:horizontal {
-    background-color: var(--primary_light);
+    background-color: var(--purple1);
     border-radius: 2px;
 }
 
 QSlider::add-page:vertical {
-    background-color: var(--primary_light);
+    background-color: var(--purple1);
     border-radius: 2px;
 }
 
@@ -749,7 +753,7 @@ QSlider::add-page:vertical {
 }
 
 #stackedMixerArea QPushButton:focus {
-    border: 1px solid var(--primary_light);
+    border: 1px solid var(--purple1);
 }
 
 /* Mute button in Audio Mixer */
