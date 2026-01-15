@@ -39,7 +39,7 @@
     /* OS Fixes */
     --os_mac_font_base_value: 10;
 
-    /* Default changes */
+    /* Default changes */ 
     --icon_base: calc(6px + var(--font_base_value));
 
     --padding_wide: calc(18px + calc(0.25 * var(--padding_base_value)));
@@ -739,24 +739,6 @@ QSlider::sub-page:horizontal {
 QSlider::add-page:vertical {
     background-color: var(--primary_light);
     border-radius: 2px;
-}
-
-/* Options button in Audio Mixer */ 
-#stackedMixerArea HScrollArea VolControl, #stackedMixerArea VScrollArea VolControl {
-    padding: 2px 4px;
-}
-
-#stackedMixerArea HScrollArea VolControl {
-    border-right: 1px solid var(--grey5);
-}
-
-#stackedMixerArea VScrollArea VolControl {
-    border-bottom: 1px solid var(--grey5);
-}
-
-#stackedMixerArea OBSSourceLabel {
-    padding-bottom: 2px;
-    font-size: var(--font_small);
 }
 
 /* Options button in mixer */
