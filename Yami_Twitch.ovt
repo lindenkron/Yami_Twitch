@@ -344,6 +344,11 @@ QPushButton[toolButton="true"]:hover,
     border-color: var(--button_bg_hover);
 }
 
+/* Created black bar under Scene/Source tree window*/
+QToolBar {
+    border: 0;
+}
+
 /* :::::::::::::::::::::::::::::::::::::::::: */
 /* :::: Advanced Scene Switcher hotfixes :::: */
 /* :::::::::::::::::::::::::::::::::::::::::: */
