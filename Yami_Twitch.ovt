@@ -272,7 +272,7 @@ QGroupBox {
     border: 1px solid var(--purple1);
     border-radius: 5px;
 	font-size: var(--font_base);
-    background: var(--bg_window);
+    background: var(--grey7);
 }
 
 QGroupBox::title {
