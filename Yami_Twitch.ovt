@@ -153,11 +153,6 @@ OBSDock > QWidget {
 /* because SourceTree::item is the parent of SourceTreeItem */
 /* which is a collection of elements that form sources */
 
-SceneTree {
-    qproperty-gridItemWidth: 154;
-    qproperty-gridItemHeight: 24;
-}
-
 *[gridMode="true"] SceneTree::item {
     padding-bottom: 2px
 }
@@ -263,7 +258,7 @@ QToolTip {
 }
 
 /* tBar color */
-QSlider::sub-page:horizontal[themeID="tBarSlider"] {
+SliderIgnoreScroll.slider-tbar::sub-page:horizontal {
     background: var(--purple1);
 }
 
