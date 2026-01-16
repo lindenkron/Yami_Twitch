@@ -297,7 +297,6 @@ QDockWidget {
 QDockWidget::title {
     background-color: var(--title_bg);
     border-bottom: 3px solid var(--purple1); 
-    margin: 0px 1px;
     text-align: left;
 }
 
@@ -708,6 +707,7 @@ QDoubleSpinBox::down-arrow {
 OBSBasicStatusBar {
     margin-top: 4px;
     border-top: 1px solid var(--border_color_grey);
+    background-color: var(--grey5);
 }
 
 StatusBarWidget > QFrame {
