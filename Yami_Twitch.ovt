@@ -152,12 +152,10 @@ OBSDock > QWidget {
 /* because SourceTree::item is the parent of SourceTreeItem */
 /* which is a collection of elements that form sources */
 
-/* Dont think this does anything anymore
-SceneTree {
-    qproperty-gridItemWidth: 154;
-    qproperty-gridItemHeight: 24;
+.list-grid SceneTree::item {
+    margin: 2px 0px 0px 2px;
+    border-radius: 0;
 }
-*/
 
 QMenu,
 QListWidget {
@@ -171,15 +169,8 @@ SourceTree,
 QStackedWidget#stackedMixerArea {
 	border: 1px solid var(--purple1);
     background: var(--grey8);
-    margin: 0px 0px;
     padding: 0px;
     border-radius: 0px;
-}
-
-SceneTree,
-SourceTree,
-QStackedWidget#stackedMixerArea {
-    border-top: 3px solid var(--purple1);
 }
 
 SceneTree::item {
@@ -317,8 +308,14 @@ QDockWidget {
 QDockWidget::title {
     background-color: var(--title_bg);
     text-align: left;
-    margin-bottom: 2px;
-    margin-right: 2px;
+    margin: 0px 1px;
+    border-bottom: 3px solid var(--purple1);
+}
+
+/* For some reason mixerDock & customDocks need no margin, while rest need 0px 1px */
+QDockWidget::title#mixerDock,
+QDockWidget::title.BrowserDock {
+    margin: 0;
 }
 
 QDockWidget::close-button,
@@ -328,6 +325,7 @@ QDockWidget::float-button {
 	subcontrol-origin: padding;
 	background: transparent;
 	border: none;
+    top: -1px;
 }
 
 QDockWidget::close-button {
