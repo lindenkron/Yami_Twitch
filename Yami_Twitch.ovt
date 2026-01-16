@@ -17,6 +17,8 @@
     --grey6: rgb(24,24,27);
     --grey7: rgb(14,14,16);
     --grey8: rgb(11,10,11);
+    --grey9: rgb(8,7,8);
+    --grey10: rgb(4,3,5);
 
     --grey_disabled: rgb(44,44,44);
 
@@ -38,14 +40,13 @@
     /* OS Fixes */
     --os_mac_font_base_value: 10;
 
-    /* Default changes */ 
+    /* Default variables from Yami.obt that we overwrite */
     --icon_base: calc(6px + var(--font_base_value));
 
     --padding_wide: calc(18px + calc(0.25 * var(--padding_base_value)));
     --padding_menu: calc(8px + calc(1 * var(--padding_base_value)));
 
     --border_color: transparent;
-    --border_color_grey: var(--grey7);
 
     --border_radius: 2px;
     --border_radius_small: 0px;
@@ -53,7 +54,6 @@
 
     --input_bg: var(--purple2);
     --input_bg_hover: var(--purple1);
-    --input_bg_arrow: var(--purple2);
     --input_bg_focus: var(--grey8);
 
     --list_item_bg_selected: var(--purple1);
@@ -72,14 +72,7 @@
     --button_bg_down: var(--grey7);
     --button_bg_disabled: var(--grey5);
 
-    /* Grey QToolButton */
-    --button_grey_bg: var(--grey7);
-    --button_grey_bg_hover: var(--purple1);
-    --button_grey_bg_down: var(--grey8);
-    --button_grey_bg_disabled: var(--grey-disabled);
-    --button_grey_pressed: var(--grey8);
-
-    --button_border: var(--button_bg);
+    --button_border: var(--purple2);
     --button_border_hover: var(--purple1);
     --button_border_focus: var(--purple1);
 
@@ -153,96 +146,115 @@ OBSDock > QWidget {
 /* because SourceTree::item is the parent of SourceTreeItem */
 /* which is a collection of elements that form sources */
 
-*[gridMode="true"] SceneTree::item {
-    padding-bottom: 2px
+/* Dont think this does anything anymore
+SceneTree {
+    qproperty-gridItemWidth: 154;
+    qproperty-gridItemHeight: 24;
 }
-
-/* background on SceneTree & SourceTree */
-QAbstractItemView { 
-	border: 1px solid var(--purple1);
-    border-radius: 0px;
-    background: var(--grey8);
-}
+*/
 
 QMenu,
-QListWidget,
-SceneTree,
-SourceTree {
+QListWidget {
+    margin: 0px 0px;
     padding: 0px;
     border-radius: 0px;
 }
 
-QMenu,
-QListWidget,
-SceneTree::item {
+SceneTree,
+SourceTree,
+QStackedWidget#stackedMixerArea {
+	border: 1px solid var(--purple1);
+    background: var(--grey8);
+    margin: 0px 0px;
+    padding: 0px;
     border-radius: 0px;
 }
 
+SceneTree,
+SourceTree,
+QStackedWidget#stackedMixerArea {
+    border-top: 3px solid var(--purple1);
+}
+
 SceneTree::item {
+    border-radius: 0px;
     margin: 1px;
 }
 
 SourceTreeItem {
-    border: 1px solid var(--grey8);
-    border-radius: 0px;
-    padding-bottom: 1px;
+    padding-bottom: 2px;
 }
 
 SourceTreeItem OBSSourceLabel {
-    padding-bottom: 1px;
+    padding: 1px;
+    padding-bottom: 2px;
 }
-
+SceneTree::item,
 SourceTree::item {
-    margin: 0px;
+    margin: 1px 1px 0px 1px;
     border-radius: 0px;
 }
 
-QMenu::item:selected,
-QListWidget::item:selected,
-SceneTree::item:selected,
-SourceTree::item:selected {
-    background-color: var(--purple2);
+OBSBasicSettings QListWidget::item,
+OBSBasicSourceSelect QListWidget::item {
+    border-radius: 0;
+    padding: 2px;
 }
 
-QMenu::item:hover,
-QListWidget::item:hover,
-SceneTree::item:hover,
-SourceTree::item:hover,
+QMenu::item,
+QListWidget::item,
+SceneTree::item,
+SourceTree::item {
+    border: 1px solid transparent;
+}
+
+QMenu::item:hover:!selected,
+QListWidget::item:hover:!selected,
+SceneTree::item:hover:!selected,
+SourceTree::item:hover:!selected {
+    background-color: var(--purple1);
+    border-color: var(--purple3);
+}
+
+QMenu::item:selected:!active,
+QListWidget::item:selected:!active,
+SceneTree::item:selected:!active,
+SourceTree::item:selected:!active {
+    background-color: var(--purple2);
+    border-color: var(--grey1);
+}
+
+QMenu::item:selected:active,
+QListWidget::item:selected:active,
+SceneTree::item:selected:active,
+SourceTree::item:selected:active {
+    background-color: var(--purple2);
+    border-color: var(--purple2);
+}
+
 QMenu::item:selected:hover,
 QListWidget::item:selected:hover,
 SceneTree::item:selected:hover,
 SourceTree::item:selected:hover {
-    background-color: var(--purple1);
-    border: 1px solid var(--purple2);
+    background-color: var(--purple2);
+    border-color: var(--purple3);
 }
 
-QMenu::item:focus,
-QListWidget::item:focus,
-SceneTree::item:focus,
-SourceTree::item:focus,
-QMenu::item:selected:focus,
-QListWidget::item:selected:focus,
-SceneTree::item:selected:focus,
-SourceTree::item:selected:focus {
-    background-color: var(--purple1);
-    border: 1px solid var(--border_highlight);
-}
-
+QMenu::item:disabled,
+QMenu::item:disabled:hover,
 QListWidget::item:disabled,
 QListWidget::item:disabled:hover,
-SourceTree::item:disabled,
-SourceTree::item:disabled:hover,
 SceneTree::item:disabled,
-SceneTree::item:disabled:hover {
+SceneTree::item:disabled:hover,
+SourceTree::item:disabled,
+SourceTree::item:disabled:hover {
     background: transparent;
     color: var(--text_disabled);
+    border-color: transparent;
 }
 
-/* Audio mixer */
-QStackedWidget#stackedMixerArea {
-    border: 1px solid var(--purple1);
-    border-radius: 0px;
-}
+
+
 
 #vVolumeWidgets {
     background: var(--grey8);
@@ -250,12 +262,15 @@ QStackedWidget#stackedMixerArea {
 /* ----------- */
 
 /* Tooltip fixes */
+/* Appears deprecated, replaced with QToolButton?
 QToolTip {
     padding: 4px;
     color: var(--text);
     border: 1px solid var(--purple2);
     border-radius: 2px;
+    background-color: orange;
 }
+*/
 
 /* tBar color */
 SliderIgnoreScroll.slider-tbar::sub-page:horizontal {
@@ -278,6 +293,10 @@ QGroupBox::title {
     padding: 2px;
     background-color: var(--grey6);
 }
+/* Hotfix, the UI has this clipping if you dont apply it */
+QGroupBox#simpleReplayBuf::title {
+    margin-top: -3px;
+}
 
 /* Fixing the Accessibility title having 1 more pixel, due to checkbox in title */
 QGroupBox#colorsGroupBox::title {
@@ -291,8 +310,9 @@ QDockWidget {
 
 QDockWidget::title {
     background-color: var(--title_bg);
-    border-bottom: 3px solid var(--purple1); 
     text-align: left;
+    margin-bottom: 2px;
+    margin-right: 2px;
 }
 
 QDockWidget::close-button,
@@ -313,30 +333,99 @@ QStatusBar {
     background-color: var(--bg_window);
 }
 
+/* New Add Sources window OBSBasicSourceSelect*/
+QLabel#existingLabel {
+	border-bottom: 1px outset var(--purple1);
+    background-color: var(--grey6);
+}
+
+QFrame#selectExistingFrame {
+    border: 0;
+    border-radius: 0;
+}
+
+/* Disable black frame on extra widget */
+QFrame#selectTypeFrame {
+    border: 0;
+}
+/* Set proper border for list */
+QListWidget#sourceTypeList {
+    border: 0;
+    border-radius: 0;
+    border: 1px solid var(--purple1);
+}
+
+QListWidget#sourceTypeList::item {
+    margin: 1px 1px 0px 1px;
+}
+
+FlowFrame#existingListFrame QPushButton {
+    border: 1px solid var(--grey8);
+    border-radius: 0;
+}
+
+FlowFrame#existingListFrame QLabel#thumbnail  {
+    border-color: var(--grey8);
+    background: var(--grey7);
+}
+
+QFrame#createNewFrame {
+    border: 0;
+    border-radius: 0;
+}
+QFrame#createNewFrame QLabel {
+	border-bottom: 1px outset var(--purple1);
+}
+
+QFrame#createNewFrame QLineEdit#newSourceName {
+    background-color: var(--grey8);
+    padding-left: 8px;
+    border: 1px solid transparent;
+}
+
+QFrame#createNewFrame QLineEdit#newSourceName:hover,
+QFrame#createNewFrame QLineEdit#newSourceName:focus {
+    background-color: var(--grey7);
+    border: 1px solid var(--grey9);
+}
+
+
 /* QToolButton, and anything that is supposed to be a QToolButton - but isn't yet  */
-QToolButton,
+QToolBar QToolButton,
 QPushButton:checked,
 QPushButton[toolButton="true"],
 .btn-tool {
     min-width: var(--icon_base);
     height: var(--icon_base);
     width: var(--icon_base);
-    background-color: var(--button_grey_bg);
-    border-color: var(--border_color_grey);
-    padding: 2px;
+    background-color: var(--grey7);
+    border-color: var(--grey10);
+    padding: 3px;
     color: var(--grey1) !important;
 }
 
-QToolButton:disabled,
-QPushButton[toolButton="true"]:disabled,
-.btn-tool:disabled {
-    border-color: var(--grey_disabled)
+#AdvSceneSwitcher  QToolBar QToolButton {
+    background-color: var(--grey6);
 }
 
-QToolButton:hover,
-QPushButton[toolButton="true"]:hover,
+#AdvSceneSwitcher  QToolBar QToolButton:hover {
+    background-color: var(--purple2);
+    border-color: var(--grey2);
+}
+
+QPushButton#virtualCamConfigButton {
+    padding: 0 2px; 
+}
+
+QToolBar QToolButton:disabled,
+.btn-tool:disabled {
+    border-color: var(--grey_disabled);
+    background-color: var(--grey5);
+}
+
+QToolBar QToolButton:hover,
 .btn-tool:hover {
-    border-color: var(--button_bg_hover);
+    border-color: var(--grey2);
 }
 
 /* Created black bar under Scene/Source tree window*/
@@ -350,6 +439,7 @@ QToolBar {
 
 /* Triple dot in Adv-ss :: A checked button shouldn't be grey */
 /* Also fixes Cogwheel with ::flat */
+.button-primary,
 QPushButton::flat,
 QPushButton:checked,
 QPushButton:checked:focus,
@@ -359,6 +449,8 @@ QPushButton:unchecked:focus {
     background-color: var(--button_bg);
 }
 
+.button-primary:hover,
+.button-primary:focus,
 QPushButton::flat:hover,
 QPushButton:checked:hover,
 QPushButton:unchecked:hover {
@@ -366,50 +458,53 @@ QPushButton:unchecked:hover {
     background-color: var(--button_bg_hover);
 }
 
+.button-primary:pressed,
 QPushButton:checked:pressed,
 QPushButton:unchecked:pressed,
 QPushButton::flat:pressed {
     background-color: var(--button_bg_down);
 }
 
+.button-primary:disabled,
 QPushButton:disabled {
-    border-color: var(--border_color_grey);
+    background-color: var(--grey5);
+    border-color: var(--grey4);
 }
 
 /* For the border around the condition/actions segment */ 
-advss--AdvSceneSwitcher #conditionsList,
-advss--AdvSceneSwitcher #actionsList {
+#AdvSceneSwitcher #conditionsList,
+#AdvSceneSwitcher #actionsList {
     border: 1px solid var(--purple2); 
 }
 
 /* Hopefully temporary fix until I figure out how to color a QDrag image widget */
-advss--AdvSceneSwitcher QLineEdit,
-advss--AdvSceneSwitcher QTextEdit, 
-advss--AdvSceneSwitcher QPlainTextEdit,
-advss--AdvSceneSwitcher QComboBox {
+#AdvSceneSwitcher QLineEdit,
+#AdvSceneSwitcher QTextEdit, 
+#AdvSceneSwitcher QPlainTextEdit,
+#AdvSceneSwitcher QComboBox {
     border: 1px solid var(--grey4);
     background-color: var(--grey8);
 }
 
-advss--AdvSceneSwitcher QLineEdit:hover,
-advss--AdvSceneSwitcher QTextEdit:hover, 
-advss--AdvSceneSwitcher QPlainTextEdit:hover,
-advss--AdvSceneSwitcher QComboBox:hover {
+#AdvSceneSwitcher QLineEdit:hover,
+#AdvSceneSwitcher QTextEdit:hover, 
+#AdvSceneSwitcher QPlainTextEdit:hover,
+#AdvSceneSwitcher QComboBox:hover {
     border: 1px solid var(--purple2);
 }
 
 /* Specifically the variable input fields in adv-ss */
 /* Might get fixed in future Advance Scene Switcher when setting Widgets frameShape to NoFrame */
-advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"] {
+#AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"] {
     border: 1px solid var(--grey4);
     background-color: var(--grey7);
 }
-advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:hover,
-advss--AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:focus {
+
+#AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:hover,
+#AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:focus {
     border: 1px solid var(--purple2);
     background-color: var(--grey7);
 }
-
 /* ----------- */
 
 /* OBSBasic primary controls buttons, bottom right */
@@ -437,7 +532,7 @@ OBSBasicFilters #widget_2 QPushButton:hover {
 }
 OBSBasicFilters #widget QPushButton:pressed,
 OBSBasicFilters #widget_2 QPushButton:pressed {
-    background-color: var(--button_grey_bg);
+    background-color: var(--grey7);
     border: 1px solid var(--button_border_hover);
 }
 
@@ -468,9 +563,6 @@ QScrollBar::handle:pressed {
     border: 1px solid var(--purple1); 
 }
 
-QScrollBar:vertical, QScrollBar:horizontal {
-}
-
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
 QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
     border: none;
@@ -484,16 +576,28 @@ QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal, QScrollBa
     color: none;
 }
 
+/* ---- Hotkeys ---- */
+/* Overwrite for Hotkeys QLineEdit at top */
 
-/* ---------------- */
+/* Default */
+QLineEdit#hotkeyFilterSearch,
+OBSHotkeyEdit#hotkeyFilterInput,
+OBSHotkeyWidget OBSHotkeyEdit {
+    background-color: var(--grey8);
+}
+OBSHotkeyWidget OBSHotkeyEdit:hover,
+OBSHotkeyWidget OBSHotkeyEdit:focus,
+OBSHotkeyWidget OBSHotkeyEdit:hover,
+OBSHotkeyWidget OBSHotkeyEdit:focus {
+    background: var(--grey6);
+}
+
+QFrame#hotkeyScrollFrame {
+    background-color: var(--grey7);
+}
 
 OBSHotkeyLabel[hotkeyPairHover=true] {
     color: var(--purple1);
-}
-
-OBSBasicSettings QListWidget::item {
-    border-radius: 0;
-    padding: 2px;
 }
 
 OBSBasicSettings [frameShape="1"],
@@ -523,22 +627,6 @@ OBSBasicAdvAudio #scrollArea {
     padding: 0px 0px 2px 2px;
 }
 
-/* TABLEFIX - Fix the weird awkward header of "Custom Browser Docks" */
-OBSExtraBrowsers #table > QHeaderView {
-    background: var(--purple2);
-    border: none;
-}
-OBSExtraBrowsers #table > QWidget #extraPanelDelete {
-    height: 100%;
-    width: 100%;
-    padding-bottom: 1px;
-}
-OBSExtraBrowsers > QTableView {
-    gridline-color: var(--grey6);
-    background: var(--grey7);
-    border: 1px solid var(--purple1);
-}
-
 /* Primary Control Button Checked Coloring */
 #streamButton:!hover:!pressed:checked,
 #recordButton:!hover:!pressed:checked,
@@ -559,6 +647,7 @@ OBSExtraBrowsers > QTableView {
     color: var(--text);
     margin-bottom: 4px;
 }
+
 
 /* CLASSIC CHANGES */
 
@@ -592,7 +681,7 @@ QComboBox::drop-down:editable,
 QDateTimeEdit::drop-down:editable  {
     border:none;
     width: 32px;
-    background-color: var(--input_bg_arrow);
+    background-color: var(--purple2);
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
 }
@@ -613,30 +702,51 @@ QComboBox:editable:focus {
 QLineEdit,
 QTextEdit,
 QPlainTextEdit {
-    background-color: var(--input_bg_focus);
+    background-color: var(--grey6);
     padding-left: 8px;
     border: 0;
 }
 
 QLineEdit:hover,
 QTextEdit:hover,
-QPlainTextEdit:hover {
-    background-color: var(--input_bg_focus);
+QPlainTextEdit:hover,
+QLineEdit:focus,
+QTextEdit:focus,
+QPlainTextEdit:focus {
+    background-color: var(--grey5);
 }
 
+/* Overwrite input boxes for settingsPages */
+#settingsPages QSpinBox,
+#settingsPages QDoubleSpinBox {
+    background-color: var(--grey6);
+}
+
+#settingsPages QSpinBox:hover,
+#settingsPages QDoubleSpinBox:hover,
+#settingsPages QSpinBox:focus,
+#settingsPages QDoubleSpinBox:focus {
+    background-color: var(--grey5);
+}
+
+/* General input boxes */
 QSpinBox,
 QDoubleSpinBox {
-    background-color: var(--input_bg_focus);
+    background-color: var(--grey8);
     border-width: 0px;
     padding-left: 8px;
     height: var(--input_height);
     max-height: var(--input_height);
     min-width: 50px;
+    border: 1px solid transparent;
 }
 
 QSpinBox:hover,
-QDoubleSpinBox:hover {
-    background-color: var(--input_bg_focus);
+QDoubleSpinBox:hover,
+QSpinBox:focus,
+QDoubleSpinBox:focus {
+    background-color: var(--grey7);
+    border: 1px solid var(--grey9);
 }
 
 QSpinBox::up-button:disabled,
@@ -704,15 +814,15 @@ QDoubleSpinBox::down-arrow {
 
 /* ------------- */
 
+
 OBSBasicStatusBar {
     margin-top: 4px;
-    border-top: 1px solid var(--border_color_grey);
+    border-top: 1px solid var(--grey7);
     background-color: var(--grey5);
 }
 
 StatusBarWidget > QFrame {
-    margin-top: 1px;
-    border: 0px solid var(--border_color_grey);
+    border: 0px solid var(--grey7);
     border-left-width: 1px;
     padding: 0px 8px 2px;
 }
@@ -722,11 +832,20 @@ OBSBasicSettings #PropertiesContainer {
 }
 
 /* Fix Warning position */
+/* Possibly deprecated 
 QLabel#audioMsg {
     margin-left: 10px;
 }
 QLabel#audioMsg_2 {
     margin-left: 15px;
+}
+*/
+
+/* Volume Bar color */
+
+VolumeControl {
+    margin: 2px 1px 2px 2px;
+    border: 1px solid var(--grey6);
 }
 
 VolumeControl.volume-pinned .mixer-category {
@@ -734,7 +853,6 @@ VolumeControl.volume-pinned .mixer-category {
     color: var(--text);
 }
 
-/* Volume Bar color */
 QSlider::sub-page:horizontal {
     background-color: var(--purple1);
     border-radius: 2px;
@@ -758,6 +876,7 @@ QSlider::add-page:vertical {
 
 /* Mute button in Audio Mixer */
 /* UNMUTED */
+/* Appears to be deprecated
 .indicator-mute::indicator:unchecked,
 .indicator-mute::indicator:unchecked:focus {
     width: var(--icon_base_mixer);
@@ -774,6 +893,7 @@ QSlider::add-page:vertical {
 }
 
 /* MUTED */
+/* Appears to be deprecated
 .indicator-mute::indicator,
 .indicator-mute::indicator:focus {
     width: var(--icon_base_mixer);
@@ -788,6 +908,7 @@ QSlider::add-page:vertical {
 .indicator-mute::indicator:unchecked:pressed {
     background-color: var(--button_bg_down);
 }
+*/
 
 /* ------------------------- */
 
