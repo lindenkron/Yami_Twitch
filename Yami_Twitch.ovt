@@ -164,11 +164,12 @@ QListWidget {
     border-radius: 0px;
 }
 
+
 SceneTree,
 SourceTree,
-QStackedWidget#stackedMixerArea {
+#stackedMixerArea QScrollArea {
 	border: 1px solid var(--purple1);
-    background: var(--grey8);
+    background-color: var(--bg_base);
     padding: 0px;
     border-radius: 0px;
 }
@@ -251,11 +252,6 @@ SourceTree::item:disabled:hover {
 }
 
 
-
-
-#vVolumeWidgets {
-    background: var(--grey8);
-}
 /* ----------- */
 
 /* Tooltip fixes */
@@ -370,7 +366,7 @@ FlowFrame#existingListFrame QPushButton {
 
 FlowFrame#existingListFrame QLabel#thumbnail  {
     border-color: var(--grey8);
-    background: var(--grey7);
+    background: var(--grey1);
 }
 
 QFrame#createNewFrame {
@@ -847,9 +843,14 @@ QLabel#audioMsg_2 {
 
 /* Volume Bar color */
 
+VolumeMeter {
+    background-color: var(--grey8);
+}
+
 VolumeControl {
     margin: 2px 1px 2px 2px;
-    border: 1px solid var(--grey6);
+    border: 1px solid var(--grey5);
+    background-color: var(--grey8);
 }
 
 VolumeControl.volume-pinned .mixer-category {
