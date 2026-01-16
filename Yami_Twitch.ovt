@@ -25,6 +25,7 @@
     --purple1: #9146ff;
     --purple2: #782ce8;
     --purple3: #6921ff;
+    --orange: #ff7800;
 
     --bg_window: var(--grey6);
     --bg_preview: var(--grey8);
@@ -391,18 +392,7 @@ QFrame#createNewFrame QLineEdit#newSourceName:focus {
 
 
 /* QToolButton, and anything that is supposed to be a QToolButton - but isn't yet  */
-QToolBar QToolButton,
-QPushButton:checked,
-QPushButton[toolButton="true"],
-.btn-tool {
-    min-width: var(--icon_base);
-    height: var(--icon_base);
-    width: var(--icon_base);
-    background-color: var(--grey7);
-    border-color: var(--grey10);
-    padding: 3px;
-    color: var(--grey1) !important;
-}
+
 
 #AdvSceneSwitcher  QToolBar QToolButton {
     background-color: var(--grey6);
@@ -415,6 +405,19 @@ QPushButton[toolButton="true"],
 
 QPushButton#virtualCamConfigButton {
     padding: 2px 5px; 
+}
+
+QToolBar QToolButton,
+QPushButton:checked,
+QPushButton[toolButton="true"],
+.btn-tool {
+    min-width: var(--icon_base);
+    height: var(--icon_base);
+    width: var(--icon_base);
+    background-color: var(--grey7);
+    border-color: var(--grey10);
+    padding: 3px;
+    color: var(--grey1) !important;
 }
 
 QToolBar QToolButton:disabled,
@@ -439,34 +442,22 @@ QToolBar {
 
 /* Triple dot in Adv-ss :: A checked button shouldn't be grey */
 /* Also fixes Cogwheel with ::flat */
-.button-primary,
-QPushButton::flat,
-QPushButton:checked,
-QPushButton:checked:focus,
-QPushButton:unchecked,
-QPushButton:unchecked:focus {
+.button-primary {
     border-color: var(--button_border);
     background-color: var(--button_bg);
 }
 
 .button-primary:hover,
-.button-primary:focus,
-QPushButton::flat:hover,
-QPushButton:checked:hover,
-QPushButton:unchecked:hover {
+.button-primary:focus {
     border-color: var(--button_border_hover);
     background-color: var(--button_bg_hover);
 }
 
-.button-primary:pressed,
-QPushButton:checked:pressed,
-QPushButton:unchecked:pressed,
-QPushButton::flat:pressed {
+.button-primary:pressed {
     background-color: var(--button_bg_down);
 }
 
-.button-primary:disabled,
-QPushButton:disabled {
+.button-primary:disabled {
     background-color: var(--grey5);
     border-color: var(--grey4);
 }
@@ -519,23 +510,7 @@ OBSBasicFilters #widget_2 QPushButton {
     min-width: var(--icon_base_mixer);
     height: var(--icon_base_mixer);
     width: var(--icon_base_mixer);
-    border: 1px solid var(--button_border);
 }
-OBSBasicFilters #widget QPushButton:focus,
-OBSBasicFilters #widget_2 QPushButton:focus {
-    background-color: var(--button_bg);
-}
-OBSBasicFilters #widget QPushButton:hover,
-OBSBasicFilters #widget_2 QPushButton:hover {
-    background-color: var(--button_bg_hover);
-    border: 1px solid var(--button_border_hover);
-}
-OBSBasicFilters #widget QPushButton:pressed,
-OBSBasicFilters #widget_2 QPushButton:pressed {
-    background-color: var(--grey7);
-    border: 1px solid var(--button_border_hover);
-}
-
 
 QTabBar::tab {
     border: none;
@@ -704,7 +679,7 @@ QTextEdit,
 QPlainTextEdit {
     background-color: var(--grey6);
     padding-left: 8px;
-    border: 0;
+    border: 1px solid transparent;
 }
 
 QLineEdit:hover,
@@ -714,6 +689,7 @@ QLineEdit:focus,
 QTextEdit:focus,
 QPlainTextEdit:focus {
     background-color: var(--grey5);
+    border: 1px solid var(--grey9);
 }
 
 /* Overwrite input boxes for settingsPages */
@@ -727,6 +703,23 @@ QPlainTextEdit:focus {
 #settingsPages QSpinBox:focus,
 #settingsPages QDoubleSpinBox:focus {
     background-color: var(--grey5);
+}
+
+/* Overwrite input boxes for Properties window */
+OBSBasicProperties QLineEdit,
+OBSBasicProperties OBSPlainTextEdit,
+OBSBasicProperties QLineEdit:pressed,
+OBSBasicProperties OBSPlainTextEdit:pressed,
+OBSBasicProperties QLineEdit:focus,
+OBSBasicProperties OBSPlainTextEdit:focus,
+OBSBasicProperties QLineEdit:selected,
+OBSBasicProperties OBSPlainTextEdit:selected {
+    background-color: var(--grey8);
+}
+OBSBasicProperties QLineEdit:hover,
+OBSBasicProperties OBSPlainTextEdit:hover {
+    background-color: var(--grey7);
+    border: 1px solid var(--grey10);
 }
 
 /* General input boxes */
@@ -869,15 +862,19 @@ QSlider::add-page:vertical {
 }
 
 /* Options button in mixer */
-#stackedMixerArea QPushButton {
+AudioMixer #stackedMixerArea QPushButton {
     width: var(--icon_base_mixer);
     height: var(--icon_base_mixer);
     padding: 2px;
 }
 
-#stackedMixerArea QPushButton:focus {
-    border: 1px solid var(--purple1);
+AudioMixer #stackedMixerArea QPushButton:hover,
+AudioMixer #stackedMixerArea QPushButton:checked,
+AudioMixer #stackedMixerArea QPushButton:focus,
+AudioMixer #stackedMixerArea QPushButton::selected {
+    border: 1px solid transparent;
 }
+
 
 /* Mute button in Audio Mixer */
 /* UNMUTED */
