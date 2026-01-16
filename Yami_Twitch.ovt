@@ -43,6 +43,12 @@
     /* Default variables from Yami.obt that we overwrite */
     --icon_base: calc(6px + var(--font_base_value));
 
+    --primary: var(--purple2);
+    --primary_light: var(--purple1);
+    --primary_lighter: var(--purple1);
+    --primary_dark: var(--purple3);
+    --primary_darker: var(--purple3);
+
     --padding_wide: calc(18px + calc(0.25 * var(--padding_base_value)));
     --padding_menu: calc(8px + calc(1 * var(--padding_base_value)));
 
