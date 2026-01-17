@@ -110,31 +110,31 @@
 
 /* ICONS - Only changed some of them (mostly sources) rest fits */
 OBSBasic {
-    qproperty-imageIcon: url(theme:twitch/sources/image.svg);
-    qproperty-colorIcon: url(theme:twitch/sources/brush.svg);
-    qproperty-slideshowIcon: url(theme:twitch/sources/slideshow.svg);
-    qproperty-audioInputIcon: url(theme:twitch/sources/microphone.svg);
-    qproperty-audioOutputIcon: url(theme:twitch/settings/audio.svg);
-    qproperty-desktopCapIcon: url(theme:twitch/settings/video.svg);
-    qproperty-windowCapIcon: url(theme:twitch/sources/window.svg);
-    qproperty-gameCapIcon: url(theme:twitch/sources/gamepad.svg);
-    qproperty-cameraIcon: url(theme:twitch/sources/camera.svg);
-    qproperty-textIcon: url(theme:twitch/sources/text.svg);
-    qproperty-mediaIcon: url(theme:twitch/sources/media.svg);
-    qproperty-browserIcon: url(theme:twitch/sources/globe.svg);
-    qproperty-groupIcon: url(theme:twitch/sources/group.svg);
-    qproperty-sceneIcon: url(theme:twitch/sources/scene.svg);
-    qproperty-defaultIcon: url(theme:twitch/sources/default.svg);
-    qproperty-audioProcessOutputIcon: url(theme:twitch/sources/windowaudio.svg);
+    qproperty-imageIcon: url(theme:Twitch/sources/image.svg);
+    qproperty-colorIcon: url(theme:Twitch/sources/brush.svg);
+    qproperty-slideshowIcon: url(theme:Twitch/sources/slideshow.svg);
+    qproperty-audioInputIcon: url(theme:Twitch/sources/microphone.svg);
+    qproperty-audioOutputIcon: url(theme:Twitch/settings/audio.svg);
+    qproperty-desktopCapIcon: url(theme:Twitch/settings/video.svg);
+    qproperty-windowCapIcon: url(theme:Twitch/sources/window.svg);
+    qproperty-gameCapIcon: url(theme:Twitch/sources/gamepad.svg);
+    qproperty-cameraIcon: url(theme:Twitch/sources/camera.svg);
+    qproperty-textIcon: url(theme:Twitch/sources/text.svg);
+    qproperty-mediaIcon: url(theme:Twitch/sources/media.svg);
+    qproperty-browserIcon: url(theme:Twitch/sources/globe.svg);
+    qproperty-groupIcon: url(theme:Twitch/sources/group.svg);
+    qproperty-sceneIcon: url(theme:Twitch/sources/scene.svg);
+    qproperty-defaultIcon: url(theme:Twitch/sources/default.svg);
+    qproperty-audioProcessOutputIcon: url(theme:Twitch/sources/windowaudio.svg);
 }
 
 * [themeID="revertIcon"] {
-    qproperty-icon: url(theme:twitch/revert.svg);
+    qproperty-icon: url(theme:Twitch/revert.svg);
 }
 
 QDockWidget {
-	titlebar-close-icon: url(theme:twitch/close.svg);
-	titlebar-normal-icon: url(theme:twitch/popout.svg);
+	titlebar-close-icon: url(theme:Twitch/close.svg);
+	titlebar-normal-icon: url(theme:Twitch/popout.svg);
 }
 
 QWidget {
@@ -915,37 +915,37 @@ AudioMixer #stackedMixerArea QPushButton::selected {
 /* ------------------------- */
 
 MuteCheckBox::indicator:checked {
-    image: url(theme:twitch/mute.svg);
+    image: url(theme:Twitch/mute.svg);
 }
 
 MuteCheckBox::indicator:indeterminate {
-    image: url(theme:twitch/unassigned.svg);
+    image: url(theme:Twitch/unassigned.svg);
 }
 
 MuteCheckBox::indicator:unchecked {
-    image: url(theme:twitch/settings/audio.svg);
+    image: url(theme:Twitch/settings/audio.svg);
 }
 
 MuteCheckBox::indicator:unchecked:hover {
-    image: url(theme:twitch/settings/audio.svg);
+    image: url(theme:Twitch/settings/audio.svg);
 }
 
 MuteCheckBox::indicator:unchecked:focus {
-    image: url(theme:twitch/settings/audio.svg);
+    image: url(theme:Twitch/settings/audio.svg);
 }
 
 MuteCheckBox::indicator:checked:hover {
-    image: url(theme:twitch/mute.svg);
+    image: url(theme:Twitch/mute.svg);
 }
 
 MuteCheckBox::indicator:checked:focus {
-    image: url(theme:twitch/mute.svg);
+    image: url(theme:Twitch/mute.svg);
 }
 
 MuteCheckBox::indicator:checked:disabled {
-    image: url(theme:twitch/mute.svg);
+    image: url(theme:Twitch/mute.svg);
 }
 
 MuteCheckBox::indicator:unchecked:disabled {
-    image: url(theme:twitch/settings/audio.svg);
+    image: url(theme:Twitch/settings/audio.svg);
 }
