@@ -137,9 +137,45 @@ QDockWidget {
 	titlebar-normal-icon: url(theme:Twitch/popout.svg);
 }
 
+MuteCheckBox::indicator:checked {
+    image: url(theme:Twitch/mute.svg);
+}
+
+MuteCheckBox::indicator:indeterminate {
+    image: url(theme:Twitch/unassigned.svg);
+}
+
+MuteCheckBox::indicator:unchecked {
+    image: url(theme:Twitch/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:unchecked:hover {
+    image: url(theme:Twitch/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:unchecked:focus {
+    image: url(theme:Twitch/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:checked:hover {
+    image: url(theme:Twitch/mute.svg);
+}
+
+MuteCheckBox::indicator:checked:focus {
+    image: url(theme:Twitch/mute.svg);
+}
+
+MuteCheckBox::indicator:checked:disabled {
+    image: url(theme:Twitch/mute.svg);
+}
+
+MuteCheckBox::indicator:unchecked:disabled {
+    image: url(theme:Twitch/settings/audio.svg);
+}
+
+
 QWidget {
     selection-background-color: var(--purple2);
-    /* font-family: 'PixelOperator'; */
 }
 
 OBSDock > QWidget {
@@ -854,38 +890,3 @@ AudioMixer #stackedMixerArea QPushButton::selected {
 
 /* ------------------------- */
 
-MuteCheckBox::indicator:checked {
-    image: url(theme:Twitch/mute.svg);
-}
-
-MuteCheckBox::indicator:indeterminate {
-    image: url(theme:Twitch/unassigned.svg);
-}
-
-MuteCheckBox::indicator:unchecked {
-    image: url(theme:Twitch/settings/audio.svg);
-}
-
-MuteCheckBox::indicator:unchecked:hover {
-    image: url(theme:Twitch/settings/audio.svg);
-}
-
-MuteCheckBox::indicator:unchecked:focus {
-    image: url(theme:Twitch/settings/audio.svg);
-}
-
-MuteCheckBox::indicator:checked:hover {
-    image: url(theme:Twitch/mute.svg);
-}
-
-MuteCheckBox::indicator:checked:focus {
-    image: url(theme:Twitch/mute.svg);
-}
-
-MuteCheckBox::indicator:checked:disabled {
-    image: url(theme:Twitch/mute.svg);
-}
-
-MuteCheckBox::indicator:unchecked:disabled {
-    image: url(theme:Twitch/settings/audio.svg);
-}
