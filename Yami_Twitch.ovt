@@ -255,17 +255,6 @@ SourceTree::item:disabled:hover {
 
 /* ----------- */
 
-/* Tooltip fixes */
-/* Appears deprecated, replaced with QToolButton?
-QToolTip {
-    padding: 4px;
-    color: var(--text);
-    border: 1px solid var(--purple2);
-    border-radius: 2px;
-    background-color: orange;
-}
-*/
-
 /* tBar color */
 SliderIgnoreScroll.slider-tbar::sub-page:horizontal {
     background: var(--purple1);
@@ -824,18 +813,6 @@ OBSBasicSettings #PropertiesContainer {
     background-color: var(--bg_window);
 }
 
-/* Fix Warning position */
-/* Possibly deprecated 
-QLabel#audioMsg {
-    margin-left: 10px;
-}
-QLabel#audioMsg_2 {
-    margin-left: 15px;
-}
-*/
-
-/* Volume Bar color */
-
 VolumeMeter {
     background-color: var(--grey8);
 }
@@ -874,43 +851,6 @@ AudioMixer #stackedMixerArea QPushButton:focus,
 AudioMixer #stackedMixerArea QPushButton::selected {
     border: 1px solid transparent;
 }
-
-
-/* Mute button in Audio Mixer */
-/* UNMUTED */
-/* Appears to be deprecated
-.indicator-mute::indicator:unchecked,
-.indicator-mute::indicator:unchecked:focus {
-    width: var(--icon_base_mixer);
-    height: var(--icon_base_mixer);
-    background-color: var(--button_bg);
-    border-color: var(--button_border);
-}
-.indicator-mute::indicator:unchecked:pressed {
-    background-color: var(--button_bg_down);
-}
-.indicator-mute::indicator:unchecked:hover {
-    background-color:  var(--button_bg_hover);
-    border-color: var(--button_border_hover);
-}
-
-/* MUTED */
-/* Appears to be deprecated
-.indicator-mute::indicator,
-.indicator-mute::indicator:focus {
-    width: var(--icon_base_mixer);
-    height: var(--icon_base_mixer);
-    background-color: var(--grey6);
-    border-color: var(--grey4);
-}
-.indicator-mute::indicator:hover {
-    background-color: var(--grey5);
-    border-color: var(--grey3);
-}
-.indicator-mute::indicator:unchecked:pressed {
-    background-color: var(--button_bg_down);
-}
-*/
 
 /* ------------------------- */
 
