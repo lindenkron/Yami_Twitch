@@ -334,11 +334,16 @@ SourceTree::item {
     margin: 1px 1px 0 1px;
 }
 
+SourceTreeItem {
+    min-height: 23px;
+}
+
 /* Source labels */
 SourceTreeItem OBSSourceLabel {
-    padding: 1px;
     margin: 1px;
+    padding-bottom: 3px;
 }
+
 
 /* ::::::::'''''''''''''''''''':::::::: */
 /* ::: Advanced Scene Switcher List ::: */
@@ -962,6 +967,11 @@ QSlider::sub-page:horizontal {
 QSlider::add-page:vertical {
     background-color: var(--purple1);
     border-radius: 2px;
+}
+
+/* Align the audio mixers border bottom with SceneTree & SourceTree */
+AudioMixer #stackedMixerArea {
+    margin-bottom: 1px;
 }
 
 /* Options button in mixer */
