@@ -693,7 +693,8 @@ SliderIgnoreScroll.slider-tbar::sub-page:horizontal {
 }
 #previewScalingMode:hover,
 #previewScalingMode:active {
-    border-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 /* ::::::::::::::::::::::: */
