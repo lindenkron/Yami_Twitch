@@ -994,7 +994,6 @@ AudioMixer #stackedMixerArea QPushButton::selected {
 
 /* Toolbar for the Audio Mixer (Hidden, options, toggles) */
 .toolbar-button.toggle-hidden {
-    width: auto;
     min-width: 75px;
 }
 
