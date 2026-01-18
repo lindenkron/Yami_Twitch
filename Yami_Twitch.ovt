@@ -344,7 +344,6 @@ SourceTreeItem OBSSourceLabel {
     padding-bottom: 3px;
 }
 
-
 /* ::::::::'''''''''''''''''''':::::::: */
 /* ::: Advanced Scene Switcher List ::: */
 /* ::::::::....................:::::::: */
@@ -918,6 +917,11 @@ QComboBox:editable:focus {
 
 OBSBasic #contextContainer {
   background-color: var(--bg_window);
+}
+
+OBSBasic #contextSubContainer #line,
+OBSBasic #contextSubContainer #line_3 {
+    border-color: var(--grey6);
 }
 
 /* :::::::::::::::::::::::::::::::::::::::: */
