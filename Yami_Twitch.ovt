@@ -576,6 +576,36 @@ QPushButton#virtualCamConfigButton {
     padding: 2px 5px; 
 }
 
+/* ::::::::'''''''''''':::::::: */
+/* ::: Preview Zoom buttons ::: */
+/* ::::::::............:::::::: */
+
+#previewContainer #previewZoomOutButton,
+#previewContainer #previewZoomInButton {
+    background-color: var(--grey5);
+    border: 1px solid var(--grey8);
+    border-radius: 2px;
+}
+
+#previewContainer #previewZoomOutButton:hover,
+#previewContainer #previewZoomInButton:hover {
+    background-color: var(--purple2);
+    border: 1px solid var(--grey2);
+}
+
+#previewContainer #previewZoomOutButton:focus,
+#previewContainer #previewZoomInButton:focus {
+    background-color: var(--purple2);
+    border: 1px solid var(--grey2);
+}
+
+#previewContainer #previewZoomOutButton:pressed,
+#previewContainer #previewZoomInButton:pressed {
+    background-color: var(--purple1);
+    border: 1px solid var(--grey1);
+}
+
+
 /* :::::::::::::::::: */
 /* :::'           ':: */
 /* ::  QScrollBar  :: */
@@ -658,9 +688,15 @@ SliderIgnoreScroll.slider-tbar::sub-page:horizontal {
 }
 
 #previewScalingMode {
-    margin-left: 5px;
-    padding: 0px 0px 2px 2px;
+    margin-left: 4px;
+    padding: 1px 6px;
 }
+
+#previewScalingMode:hover,
+#previewScalingMode:active {
+    border-radius: 3px;
+}
+
 
 /* ::::::::::::::::::::::: */
 /* :::'                ':: */
