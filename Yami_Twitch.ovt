@@ -20,7 +20,6 @@
     --grey9: rgb(8,7,8);
     --grey10: rgb(4,3,5);
 
-    --grey_disabled: rgb(44,44,44);
 
     --purple1: #9146ff;
     --purple2: #782ce8;
@@ -82,6 +81,7 @@
     --button_border: var(--purple2);
     --button_border_hover: var(--purple1);
     --button_border_focus: var(--purple1);
+    --button_border_disabled: rgb(44,44,44);
 
     --tab_bg: var(--purple2);
     --tab_bg_hover: var(--purple1);
@@ -108,7 +108,12 @@
 
 /* TWITCH STYLE CHANGES */
 
-/* ICONS - Only changed some of them (mostly sources) rest fits */
+/* :::::::::::::::::::::::::: */
+/* :::'                  '::: */
+/* ::      Theme Icons     :: */
+/* :::.                  .::: */
+/* :::::::::::::::::::::::::: */
+/*  Only changed some of them (mostly sources) rest fits */
 OBSBasic {
     qproperty-imageIcon: url(theme:Twitch/sources/image.svg);
     qproperty-colorIcon: url(theme:Twitch/sources/brush.svg);
@@ -173,21 +178,48 @@ MuteCheckBox::indicator:unchecked:disabled {
     image: url(theme:Twitch/settings/audio.svg);
 }
 
+
+/* ::::::::::::::::::::::::::::::::::::: */
+/* :::'                              ':: */
+/* ::  QWidgets, QFrame, Any general  :: */
+/* :::.                              .:: */
+/* ::::::::::::::::::::::::::::::::::::: */
+/* Remove background and border from scene transition/controls */
+/* To make them back of the open floating area of the main scene */
 OBSDock > QWidget {
     background-color: transparent;
     border-radius: 0px;
     border: unset;
 }
 
-/* :::::::::::::: SceneTree, SourceTree :::::::::::::: */
-/* SceneTree::item and SourceTree::item works differently */
-/* because SourceTree::item is the parent of SourceTreeItem */
-/* which is a collection of elements that form sources */
-
-/* Scene list grid spacing */
-.list-grid SceneTree::item {
-    margin: 2px 0 0 2px;
+/* For the border around the condition/actions segment */ 
+#AdvSceneSwitcher #conditionsList,
+#AdvSceneSwitcher #actionsList {
+    border: 1px solid var(--grey9); 
 }
+
+#AdvSceneSwitcher QTabBar::tab{
+    background-color: var(--purple1);
+    border: none;
+    padding: 3px 6px;
+}
+
+/* Top border under the tabwidget tabs */
+#AdvSceneSwitcher QTabWidget::pane {
+    border-width: 1px;
+}
+
+#AdvSceneSwitcher QTabBar::tab:selected,
+#AdvSceneSwitcher QTabBar::tab:hover  {
+    background-color: var(--purple2);
+}
+
+
+/* ::::::::::::::::::::::::::::::::::::::::::::: */
+/* :::'       (Any list widget in OBS)       ':: */
+/* ::      QMenu, QListView, QListWidget      :: */
+/* :::.        SceneTree, SourceTree         .:: */
+/* ::::::::::::::::::::::::::::::::::::::::::::: */
 
 /* Menus and list widgets */
 QMenu,
@@ -195,6 +227,96 @@ QListWidget {
     margin: 0;
     padding: 0;
     border-radius: 0;
+}
+
+/* Shared item base */
+QMenu::item,
+QListView::item,
+QListWidget::item,
+SceneTree::item,
+SourceTree::item {
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+
+/* Selected items (hover or not) */
+QMenu::item:selected,
+QListView::item:selected,
+QListWidget::item:selected,
+SceneTree::item:selected,
+SourceTree::item:selected {
+    background-color: var(--purple2);
+}
+
+/* Selected + active window */
+QMenu::item:selected:active,
+QListView::item:selected:active,
+QListWidget::item:selected:active,
+SceneTree::item:selected:active,
+SourceTree::item:selected:active {
+    border-color: var(--purple2);
+}
+
+/* Selected + inactive window */
+QMenu::item:selected:!active,
+QListView::item:selected:!active,
+QListWidget::item:selected:!active,
+SceneTree::item:selected:!active,
+SourceTree::item:selected:!active {
+    border-color: var(--grey1);
+}
+
+/* Hovered but not selected */
+QMenu::item:hover:!selected,
+QListView::item:hover:!selected,
+QListWidget::item:hover:!selected,
+SceneTree::item:hover:!selected,
+SourceTree::item:hover:!selected {
+    background-color: var(--purple1);
+    border-color: var(--purple1);
+}
+
+/* Disabled (hover or not) */
+QMenu::item:disabled,
+QListView::item:disabled,
+QListWidget::item:disabled,
+SceneTree::item:disabled,
+SourceTree::item:disabled {
+    background: transparent;
+    color: var(--text_disabled);
+    border-color: transparent;
+}
+
+/* Top menu dropdown */
+QMenu::separator {
+    height: 2px; 
+}
+
+QMenu::item {
+    padding: var(--padding_menu_y) var(--padding_menu);
+    padding-right: 20px;
+    font-size: var(--font_base);
+    border-radius: 0;
+}
+
+/* :::::::::::::::::::::::::::::::::: */
+/* :: Border on Settings Menu list :: */
+/* :::::::::::::::::::::::::::::::::: */
+
+OBSBasicSettings #listWidget {
+    border: 1px solid var(--purple1);
+}
+
+/* ::::::::'''''''''''''''''''''''':::::::: */
+/* ::: SceneTree & SourceTree overrides ::: */
+/* ::::::::........................:::::::: */
+
+/* SourceTree::item is the parent of SourceTreeItem */
+/* SouceTree => SourceTree::item => SourceTreeItem */
+
+/* Scene list grid spacing */
+.list-grid SceneTree::item {
+    margin: 2px 0 0 2px;
 }
 
 /* Main containers */
@@ -207,84 +329,30 @@ SourceTree,
     border-radius: 0;
 }
 
+SceneTree::item,
+SourceTree::item {
+    margin: 1px 1px 0 1px;
+}
+
 /* Source labels */
 SourceTreeItem OBSSourceLabel {
     padding: 1px;
     margin: 1px;
-    background: orange;
 }
 
-/* Tree items */
-SceneTree::item,
-SourceTree::item {
-    margin: 1px 1px 0 1px;
-    border-radius: 0;
+/* ::::::::'''''''''''''''''''':::::::: */
+/* ::: Advanced Scene Switcher List ::: */
+/* ::::::::....................:::::::: */
+
+#AdvSceneSwitcher #macros {
+
 }
 
-/* Settings / source select lists */
-OBSBasicSettings QListWidget::item,
-OBSBasicSourceSelect QListWidget::item {
-    border-radius: 0;
-}
-
-/* Shared item base */
-QMenu::item,
-QListWidget::item,
-SceneTree::item,
-SourceTree::item {
-    border: 1px solid transparent;
-}
-
-/* Selected items (hover or not) */
-QMenu::item:selected,
-QListWidget::item:selected,
-SceneTree::item:selected,
-SourceTree::item:selected {
-    background-color: var(--purple2);
-}
-
-/* Selected + active window */
-QMenu::item:selected:active,
-QListWidget::item:selected:active,
-SceneTree::item:selected:active,
-SourceTree::item:selected:active {
-    border-color: var(--purple2);
-}
-
-/* Selected + inactive window */
-QMenu::item:selected:!active,
-QListWidget::item:selected:!active,
-SceneTree::item:selected:!active,
-SourceTree::item:selected:!active {
-    border-color: var(--grey1);
-}
-
-/* Hovered but not selected */
-QMenu::item:hover:!selected,
-QListWidget::item:hover:!selected,
-SceneTree::item:hover:!selected,
-SourceTree::item:hover:!selected {
-    background-color: var(--purple1);
-    border-color: var(--purple1);
-}
-
-/* Disabled (hover or not) */
-QMenu::item:disabled,
-QListWidget::item:disabled,
-SceneTree::item:disabled,
-SourceTree::item:disabled {
-    background: transparent;
-    color: var(--text_disabled);
-    border-color: transparent;
-}
-
-
-/* ----------- */
-
-/* tBar color */
-SliderIgnoreScroll.slider-tbar::sub-page:horizontal {
-    background: var(--purple1);
-}
+/* :::::::::::::::::::::::::::::::::::::::::: */
+/* :::'                                   ':: */
+/* ::  QGroupBox (Mainly settings window)  :: */
+/* :::.                                   .:: */
+/* :::::::::::::::::::::::::::::::::::::::::: */
 
 /* Group Box (Settings) */
 QGroupBox {
@@ -311,6 +379,12 @@ QGroupBox#simpleReplayBuf::title {
 QGroupBox#colorsGroupBox::title {
     margin-top: -3px;
 }
+
+/* ::::::::::::::::::: */
+/* :::'            ':: */
+/* ::  QDockWidget  :: */
+/* :::.            .:: */
+/* ::::::::::::::::::: */
 
 QDockWidget {
 	font-size: var(--font_base);
@@ -345,40 +419,44 @@ QDockWidget::close-button {
 	right: 20px;
 }
 
-QStatusBar {
-    background-color: var(--bg_window);
-}
-/* ::::::::::::::::::::::::::::::: */
-/* :: OBSBasicSourceSelect MENU :: */
-/* ::::::::::::::::::::::::::::::: */
-QLabel#existingLabel {
+/* :::::::::::::::::::::::::::: */
+/* :::'                     ':: */
+/* ::  OBSBasicSourceSelect  :: */
+/* :::.                     .:: */
+/* :::::::::::::::::::::::::::: */
+
+/* ::::::::''''''''''''''''':::::::: */
+/* ::: OBSBasicSourceSelect MENU ::: */
+/* ::::::::.................:::::::: */
+OBSBasicSourceSelect .text-title {
 	border-bottom: 1px outset var(--purple1);
     background-color: var(--grey6);
 }
 
-QFrame#selectExistingFrame {
+OBSBasicSourceSelect #createNewFrame,
+OBSBasicSourceSelect #selectExistingFrame {
     border: 0;
     border-radius: 0;
 }
 
 /* Disable black frame on extra widget */
-QFrame#selectTypeFrame {
+OBSBasicSourceSelect #selectTypeFrame {
     border: 0;
 }
 /* Set proper border for list */
-QListWidget#sourceTypeList {
+OBSBasicSourceSelect #sourceTypeList {
     border: 0;
     border-radius: 0;
     border: 1px solid var(--purple1);
 }
 
-QListWidget#sourceTypeList::item {
+OBSBasicSourceSelect #sourceTypeList::item {
     margin: 1px 1px 0px 1px;
 }
 
-/* ::::::::::::::::::::::::::::::::: */
-/* :: OBSBasicSourceSelect BUTTON :: */
-/* ::::::::::::::::::::::::::::::::: */
+/* ::::::::''''''''''''''''''':::::::: */
+/* ::: OBSBasicSourceSelect BUTTON ::: */
+/* ::::::::...................:::::::: */
 
 OBSBasicSourceSelect SourceSelectButton QPushButton {
     border: 1px solid var(--grey8);
@@ -401,27 +479,16 @@ OBSBasicSourceSelect SourceSelectButton QPushButton:hover:!active {
     border-color: var(--purple3);
 }
 
-
 OBSBasicSourceSelect SourceSelectButton #thumbnail {
     border-color: var(--grey10);
     background-color: var(--grey7);
 }
 
-/* --------------------- */
-
-#AdvSceneSwitcher  QToolBar QToolButton {
-    background-color: var(--grey6);
-}
-
-#AdvSceneSwitcher  QToolBar QToolButton:hover {
-    background-color: var(--purple2);
-    border-color: var(--grey2);
-}
-
-QPushButton#virtualCamConfigButton {
-    padding: 2px 5px; 
-}
-
+/* :::::::::::::::::::::::::::::::::::::::::::: */
+/* :::'                                     ':: */
+/* ::  QToolBar, QToolButton & QPushButtons  :: */
+/* :::.                                     .:: */
+/* :::::::::::::::::::::::::::::::::::::::::::: */
 QToolBar QToolButton,
 QPushButton:checked,
 QPushButton[toolButton="true"],
@@ -429,15 +496,19 @@ QPushButton[toolButton="true"],
     min-width: var(--icon_base);
     height: var(--icon_base);
     width: var(--icon_base);
-    background-color: var(--grey7);
+    background-color: var(--grey6);
     border-color: var(--grey10);
     padding: 3px;
     color: var(--grey1) !important;
 }
 
+QPushButton:checked {
+}
+
+QPushButton:disabled,
 QToolBar QToolButton:disabled,
 .btn-tool:disabled {
-    border-color: var(--grey_disabled);
+    border-color: var(--button_border_disabled);
     background-color: var(--grey5);
 }
 
@@ -451,10 +522,9 @@ QToolBar {
     border: 0;
 }
 
-/* :::::::::::::::::::::::::::::::::::::::::: */
-/* :::: Advanced Scene Switcher hotfixes :::: */
-/* :::::::::::::::::::::::::::::::::::::::::: */
-
+/* ::::::::''''''''''''''''''''''''':::::::: */
+/* ::: Advanced Scene Switcher overrides ::: */
+/* ::::::::.........................:::::::: */
 /* Triple dot in Adv-ss :: A checked button shouldn't be grey */
 /* Also fixes Cogwheel with ::flat */
 .button-primary {
@@ -476,62 +546,37 @@ QToolBar {
     background-color: var(--grey5);
     border-color: var(--grey4);
 }
-
-/* For the border around the condition/actions segment */ 
-#AdvSceneSwitcher #conditionsList,
-#AdvSceneSwitcher #actionsList {
-    border: 1px solid var(--purple2); 
+#AdvSceneSwitcher  QToolBar QToolButton {
+    background-color: var(--grey6);
 }
 
-/* Hopefully temporary fix until I figure out how to color a QDrag image widget */
-#AdvSceneSwitcher QLineEdit,
-#AdvSceneSwitcher QTextEdit, 
-#AdvSceneSwitcher QPlainTextEdit,
-#AdvSceneSwitcher QComboBox {
-    border: 1px solid var(--grey4);
-    background-color: var(--grey8);
+#AdvSceneSwitcher  QToolBar QToolButton:hover {
+    background-color: var(--purple2);
+    border-color: var(--grey2);
 }
 
-#AdvSceneSwitcher QLineEdit:hover,
-#AdvSceneSwitcher QTextEdit:hover, 
-#AdvSceneSwitcher QPlainTextEdit:hover,
-#AdvSceneSwitcher QComboBox:hover {
-    border: 1px solid var(--purple2);
-}
-
-/* Specifically the variable input fields in adv-ss */
-/* Might get fixed in future Advance Scene Switcher when setting Widgets frameShape to NoFrame */
-#AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"] {
-    border: 1px solid var(--grey4);
-    background-color: var(--grey7);
-}
-
-#AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:hover,
-#AdvSceneSwitcher advss--VariableTextEdit[frameShape="6"]:focus {
-    border: 1px solid var(--purple2);
-    background-color: var(--grey7);
-}
-/* ----------- */
-
-/* OBSBasic primary controls buttons, bottom right */
-#controlsFrame QPushButton {
-    max-height: 25px;
-    height: 25px;
-}
-
+/* ::::::::''''''''''''''''':::::::: */
+/* ::: Filter settings overrides ::: */
+/* ::::::::.................:::::::: */
 /* Filter buttons (larger than normal tool buttons) */
-OBSBasicFilters #widget QPushButton,
-OBSBasicFilters #widget_2 QPushButton {
+OBSBasicFilters #asyncWidget QPushButton {
     min-width: var(--icon_base_mixer);
     height: var(--icon_base_mixer);
     width: var(--icon_base_mixer);
 }
 
-QTabBar::tab {
-    border: none;
-    padding: 3px 6px;
+/* ::::::::''''''''''''''''''':::::::: */
+/* ::: Control Panel Configuration ::: */
+/* ::::::::...................:::::::: */
+QPushButton#virtualCamConfigButton {
+    padding: 2px 5px; 
 }
-/* Scroll bar */
+
+/* :::::::::::::::::: */
+/* :::'           ':: */
+/* ::  QScrollBar  :: */
+/* :::.           .:: */
+/* :::::::::::::::::: */
 QScrollBar {
     background-color: var(--grey6);
     margin: 0px;
@@ -566,7 +611,11 @@ QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal, QScrollBa
     color: none;
 }
 
-/* ---- Hotkeys ---- */
+/* :::::::::::::::::::::::::::::::::::::: */
+/* :::'                               ':: */
+/* ::  OBSHotkeyWidget, OBSHotkeyEdit  :: */
+/* :::.                               .:: */
+/* :::::::::::::::::::::::::::::::::::::: */
 /* Overwrite for Hotkeys QLineEdit at top */
 
 /* Default */
@@ -590,23 +639,15 @@ OBSHotkeyLabel[hotkeyPairHover=true] {
     color: var(--purple1);
 }
 
-OBSBasicSettings [frameShape="1"],
-OBSBasicSettings [frameShape="2"],
-OBSBasicSettings [frameShape="3"],
-OBSBasicSettings [frameShape="4"],
-OBSBasicSettings [frameShape="5"],
-OBSBasicSettings [frameShape="6"] {
-    border: 1px solid var(--purple1);
+/* ::::::::::::::::::: */
+/* :::'            ':: */
+/* ::  OBS Preview  :: */
+/* :::.            .:: */
+/* ::::::::::::::::::: */
+/* tBar color */
+SliderIgnoreScroll.slider-tbar::sub-page:horizontal {
+    background: var(--purple1);
 }
-
-/* Advanced Audio Properties */
-OBSBasicAdvAudio #scrollArea {
-    padding: 8px;
-    background: var(--grey7);
-    border-radius: 0px;
-}
-
-/* ---------------------------- */
 
 #previewScalePercent {
     padding-bottom: 2px;
@@ -617,78 +658,53 @@ OBSBasicAdvAudio #scrollArea {
     padding: 0px 0px 2px 2px;
 }
 
+/* ::::::::::::::::::::::: */
+/* :::'                ':: */
+/* ::  Control Buttons  :: */
+/* :::.                .:: */
+/* ::::::::::::::::::::::: */
 /* Primary Control Button Checked Coloring */
-#streamButton:!hover:!pressed:checked,
-#recordButton:!hover:!pressed:checked,
-#replayBufferButton:!hover:!pressed:checked,
-#virtualCamButton:!hover:!pressed:checked,
-#modeSwitch:!hover:!pressed:checked,
-#broadcastButton:!hover:!pressed:checked {
-    background: var(--button_bg_down);
+#streamButton:!hover:!pressed.state-active,
+#recordButton:!hover:!pressed.state-active,
+#pauseRecordButton:!hover:!pressed.state-active,
+#replayBufferButton:!hover:!pressed.state-active,
+#virtualCamButton:!hover:!pressed.state-active,
+#modeSwitch:!hover:!pressed.state-active,
+#broadcastButton:!hover:!pressed.state-active {
+    background: var(--grey9);
 }
 
-#contextContainer {
-  background-color: var(--bg_window);
+/* Primary Control Button Hover Coloring */
+#streamButton:hover:!pressed.state-active,
+#recordButton:hover:!pressed.state-active,
+#pauseRecordButton:hover:!pressed.state-active,
+#replayBufferButton:!pressed.state-active,
+#virtualCamButton:!pressed.state-active,
+#modeSwitch:hover:!pressed.state-active,
+#broadcastButton:hover:!pressed.state-active {
+    background: var(--grey9);
+}
+ 
+OBSBasicControls QPushButton {
+    max-height: 25px;
+    height: 25px;
 }
 
-* [themeID="previewProgramLabels"] {
+/* Changes the Preview & Program titles */
+#canvasEditor .label-preview-title {
     font-size: var(--font_base);
     font-weight: normal;
     color: var(--text);
-    margin-bottom: 4px;
+    margin-top: auto;
 }
 
 
-/* CLASSIC CHANGES */
-
-/* Top Menu Bar Items */
-/* default menu separator */
-QMenu::separator {
-    height: 2px; 
-    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 var(--grey7), stop:1 var(--grey5));  
-}
-
-QMenuBar::item:selected {
-    background: var(--purple1);
-}
-QMenu::item {
-    padding: var(--padding_menu_y) var(--padding_menu);
-    font-size: var(--font_base);
-    border-radius: 0;
-}
-
-QMenu::item {
-    padding-right: 20px;
-}
-
-QTabWidget::pane {
-    border-width: 1px;
-}
-
-QComboBox::drop-down,
-QDateTimeEdit::drop-down,
-QComboBox::drop-down:editable,
-QDateTimeEdit::drop-down:editable  {
-    border:none;
-    width: 32px;
-    background-color: var(--purple2);
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-}
-
-QComboBox:hover,
-QDateTimeEdit:hover,
-QDateTimeEdit:selected {
-    background-color: var(--input_bg_hover);
-}
-
-QComboBox:on,
-QDateTimeEdit:on,
-QComboBox:editable:focus {
-    background-color: var(--input_bg_focus);
-    border-radius: 2px;
-}
-
+/* ::::::::::::::::::::::::::::::::::::::::::::::::: */
+/* :::'                                          ':: */
+/* ::    QLineEdit, QTextEdit & QPlainTextEdit    :: */
+/* :::.                                          .:: */
+/* ::::::::::::::::::::::::::::::::::::::::::::::::: */
+/* Default is dark background, light widgets - Anything else do overwrite style */
 QLineEdit,
 QTextEdit,
 QPlainTextEdit {
@@ -707,20 +723,9 @@ QPlainTextEdit:focus {
     border: 1px solid var(--grey9);
 }
 
-/* Overwrite input boxes for settingsPages */
-#settingsPages QSpinBox,
-#settingsPages QDoubleSpinBox {
-    background-color: var(--grey6);
-}
-
-#settingsPages QSpinBox:hover,
-#settingsPages QDoubleSpinBox:hover,
-#settingsPages QSpinBox:focus,
-#settingsPages QDoubleSpinBox:focus {
-    background-color: var(--grey5);
-}
-
-/* Overwrite input boxes for Properties window */
+/* :::::''''''''''''''''''''''''':::::: */
+/* ::: OBSBasicProperties overrides ::: */
+/* :::::.........................:::::: */
 OBSBasicProperties QLineEdit,
 OBSBasicProperties OBSPlainTextEdit,
 OBSBasicProperties QLineEdit:pressed,
@@ -737,7 +742,29 @@ OBSBasicProperties OBSPlainTextEdit:hover {
     border: 1px solid var(--grey10);
 }
 
-/* General input boxes */
+
+/* ::::::::''''''''''''''''''''''''':::::::: */
+/* ::: Advanced Scene Switcher overrides ::: */
+/* ::::::::.........................:::::::: */
+/* Hopefully temporary fix until I figure out how to color a QDrag image widget */
+#AdvSceneSwitcher QLineEdit,
+#AdvSceneSwitcher QTextEdit, 
+#AdvSceneSwitcher QPlainTextEdit {
+    border: 1px solid var(--grey4);
+    background-color: var(--grey8);
+}
+
+#AdvSceneSwitcher QLineEdit:hover,
+#AdvSceneSwitcher QTextEdit:hover, 
+#AdvSceneSwitcher QPlainTextEdit:hover {
+    border: 1px solid var(--purple2);
+}
+
+/* ::::::::::::::::::::::::::::::::::::: */
+/* :::'                              ':: */
+/* ::    QSpinBox & QDoubleSpinBox    :: */
+/* :::.                              .:: */
+/* ::::::::::::::::::::::::::::::::::::: */
 QSpinBox,
 QDoubleSpinBox {
     background-color: var(--grey8);
@@ -820,25 +847,97 @@ QDoubleSpinBox::down-arrow {
     width: 12px; height: 12px;
 }
 
-/* ------------- */
+/* :::::''''''''''''''''''''':::::: */
+/* ::: #settingsPages overrides ::: */
+/* :::::.....................:::::: */
 
+/* Overwrite input boxes for settingsPages */
+#settingsPages QSpinBox,
+#settingsPages QDoubleSpinBox {
+    background-color: var(--grey6);
+}
+
+#settingsPages QSpinBox:hover,
+#settingsPages QDoubleSpinBox:hover,
+#settingsPages QSpinBox:focus,
+#settingsPages QDoubleSpinBox:focus {
+    background-color: var(--grey5);
+}
+
+/* ::::::::::::::::::::::::::::::::::::: */
+/* :::'                              ':: */
+/* ::    QComboBox & QDateTimeEdit    :: */
+/* :::.                              .:: */
+/* ::::::::::::::::::::::::::::::::::::: */
+QComboBox::drop-down,
+QDateTimeEdit::drop-down,
+QComboBox::drop-down:editable,
+QDateTimeEdit::drop-down:editable  {
+    border:none;
+    width: 32px;
+    background-color: var(--purple2);
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+QComboBox:hover,
+QDateTimeEdit:hover,
+QDateTimeEdit:selected {
+    background-color: var(--input_bg_hover);
+}
+
+QComboBox:on,
+QDateTimeEdit:on,
+QComboBox:editable:focus {
+    background-color: var(--input_bg_focus);
+    border-radius: 2px;
+}
+
+/* ::::::::''''''''''''''''''''''''':::::::: */
+/* ::: Advanced Scene Switcher overrides ::: */
+/* ::::::::.........................:::::::: */
+#AdvSceneSwitcher QComboBox {
+    border: 1px solid var(--grey4);
+    background-color: var(--grey8);
+}
+
+#AdvSceneSwitcher QComboBox:hover {
+    border: 1px solid var(--purple2);
+}
+
+/* ::::::::::::::::::::::::::::::::::::::: */
+/* :::'                               '::: */
+/* ::   contextContainer (preview Bar)  :: */
+/* :::.                               .::: */
+/* ::::::::::::::::::::::::::::::::::::::: */
+
+OBSBasic #contextContainer {
+  background-color: var(--bg_window);
+}
+
+/* :::::::::::::::::::::::::::::::::::::::: */
+/* :::'                                '::: */
+/* ::  OBSBasicStatusBar (Footer status) :: */
+/* :::.                                .::: */
+/* :::::::::::::::::::::::::::::::::::::::: */
 
 OBSBasicStatusBar {
-    margin-top: 4px;
     border-top: 1px solid var(--grey7);
     background-color: var(--grey5);
 }
 
-StatusBarWidget > QFrame {
+OBSBasicStatusBar StatusBarWidget > QFrame {
     border: 0px solid var(--grey7);
-    border-left-width: 1px;
+    border-left: 1px solid var(--grey7);
     padding: 0px 8px 2px;
 }
 
-OBSBasicSettings #PropertiesContainer {
-    background-color: var(--bg_window);
-}
 
+/* :::::::::::::::::::::::::::::::: */
+/* :::'                        '::: */
+/* ::  VolumeControl / AudioMix  :: */
+/* :::.                        .::: */
+/* :::::::::::::::::::::::::::::::: */
 
 VolumeMeter {
     background-color: var(--grey8);
@@ -851,7 +950,7 @@ VolumeControl {
 }
 
 VolumeControl.volume-pinned .mixer-category {
-    background: var(--purple3); 
+    background: var(--purple2); 
     color: var(--text);
 }
 
@@ -879,5 +978,28 @@ AudioMixer #stackedMixerArea QPushButton::selected {
     border: 1px solid transparent;
 }
 
-/* ------------------------- */
+/* :::::::::::::::::::::::: */
+/* :::'                '::: */
+/* ::  OBSBasicAdvAudio  :: */
+/* :::.                .::: */
+/* :::::::::::::::::::::::: */
+/* Advanced Audio Properties */
+OBSBasicAdvAudio #scrollArea {
+    padding: 8px;
+    background: var(--grey7);
+    border: 1px solid var(--grey9);
+    border-radius: 0px;
+}
+
+QSlider::add-page:horizontal:disabled {
+    background-color: var(--grey5);
+}
+
+QSlider::add-page:vertical:disabled {
+    background-color: var(--grey5);
+}
+
+/* :::::::::::::::::::::::::::::::: */
+/* :::::::::::::::::::::::::::::::: */
+
 
