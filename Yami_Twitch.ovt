@@ -192,28 +192,27 @@ OBSDock > QWidget {
     border: unset;
 }
 
+QTabBar::tab {
+    background-color: var(--purple2);
+    border: 1px solid transparent;
+    padding: 3px 6px;
+}
+
+/* Top border under the tabwidget tabs */
+QTabWidget::pane {
+    border-width: 1px;
+}
+
+QTabBar::tab:selected,
+QTabBar::tab:hover  {
+    background-color: var(--purple1);
+}
+
 /* For the border around the condition/actions segment */ 
 #AdvSceneSwitcher #conditionsList,
 #AdvSceneSwitcher #actionsList {
     border: 1px solid var(--grey9); 
 }
-
-#AdvSceneSwitcher QTabBar::tab{
-    background-color: var(--purple1);
-    border: none;
-    padding: 3px 6px;
-}
-
-/* Top border under the tabwidget tabs */
-#AdvSceneSwitcher QTabWidget::pane {
-    border-width: 1px;
-}
-
-#AdvSceneSwitcher QTabBar::tab:selected,
-#AdvSceneSwitcher QTabBar::tab:hover  {
-    background-color: var(--purple2);
-}
-
 
 /* ::::::::::::::::::::::::::::::::::::::::::::: */
 /* :::'       (Any list widget in OBS)       ':: */
@@ -904,7 +903,6 @@ QDoubleSpinBox::down-arrow {
 /* :::::''''''''''''''''''''':::::: */
 /* ::: #settingsPages overrides ::: */
 /* :::::.....................:::::: */
-
 /* Overwrite input boxes for settingsPages */
 #settingsPages QSpinBox,
 #settingsPages QDoubleSpinBox {
@@ -921,9 +919,6 @@ QDoubleSpinBox::down-arrow {
 /* :::::''''''''''''''''''''':::::: */
 /* ::: SettingsDialog overrides ::: */
 /* :::::.....................:::::: */
-
-
-
 #SettingsDialog QSpinBox {
     background-color: var(--grey6);
 }
@@ -931,6 +926,18 @@ QDoubleSpinBox::down-arrow {
 #SettingsDialog QSpinBox:hover,
 #SettingsDialog QSpinBox:focus {
     background-color: var(--grey5);
+}
+
+/* :::::'''''''''''''''''''':::::: */
+/* ::: Output => Replay Buffer ::: */
+/* :::::....................:::::: */
+#advOutputReplayTab QSpinBox {
+    background-color: var(--grey8);
+}
+
+#advOutputReplayTab QSpinBox:hover,
+#advOutputReplayTab QSpinBox:focus {
+    background-color: var(--grey7);
 }
 
 /* ::::::::::::::::::::::::::::::::::::: */
