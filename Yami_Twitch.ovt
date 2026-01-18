@@ -496,7 +496,7 @@ QPushButton[toolButton="true"],
     min-width: var(--icon_base);
     height: var(--icon_base);
     width: var(--icon_base);
-    background-color: var(--grey6);
+    background-color: var(--grey7);
     border-color: var(--grey10);
     padding: 3px;
     color: var(--grey1) !important;
