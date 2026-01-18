@@ -871,6 +871,7 @@ QDoubleSpinBox::up-button {
     background-color: var(--purple1);
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
+    border-color: var(--purple2);
 }
 
 QSpinBox::down-button,
@@ -888,15 +889,16 @@ QDoubleSpinBox::down-button {
     background-color: var(--purple1);
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
+    border-color: var(--purple2);
 }
 
 QSpinBox::up-arrow,
 QDoubleSpinBox::up-arrow { 
-    width: 12px; height: 12px;
+    width: 10px; height: 10px;
 }
 QSpinBox::down-arrow,
 QDoubleSpinBox::down-arrow {
-    width: 12px; height: 12px;
+    width: 10px; height: 10px;
 }
 
 /* :::::''''''''''''''''''''':::::: */
