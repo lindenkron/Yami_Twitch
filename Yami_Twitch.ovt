@@ -916,6 +916,21 @@ QDoubleSpinBox::down-arrow {
     background-color: var(--grey5);
 }
 
+/* :::::''''''''''''''''''''':::::: */
+/* ::: SettingsDialog overrides ::: */
+/* :::::.....................:::::: */
+
+
+
+#SettingsDialog QSpinBox {
+    background-color: var(--grey6);
+}
+
+#SettingsDialog QSpinBox:hover,
+#SettingsDialog QSpinBox:focus {
+    background-color: var(--grey5);
+}
+
 /* ::::::::::::::::::::::::::::::::::::: */
 /* :::'                              ':: */
 /* ::    QComboBox & QDateTimeEdit    :: */
@@ -943,6 +958,11 @@ QDateTimeEdit:on,
 QComboBox:editable:focus {
     background-color: var(--input_bg_focus);
     border-radius: 2px;
+}
+
+/* Remove dropdown radius since background bleeds through in corners */
+QComboBox QAbstractItemView {
+    border-radius: 0;
 }
 
 /* ::::::::''''''''''''''''''''''''':::::::: */
