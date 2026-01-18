@@ -691,12 +691,10 @@ SliderIgnoreScroll.slider-tbar::sub-page:horizontal {
     margin-left: 4px;
     padding: 1px 6px;
 }
-
 #previewScalingMode:hover,
 #previewScalingMode:active {
     border-radius: 3px;
 }
-
 
 /* ::::::::::::::::::::::: */
 /* :::'                ':: */
@@ -761,6 +759,19 @@ QTextEdit:focus,
 QPlainTextEdit:focus {
     background-color: var(--grey5);
     border: 1px solid var(--grey9);
+}
+
+/* :::::'''''''''''''''':::::: */
+/* ::: read-only overrides ::: */
+/* :::::................:::::: */
+QLineEdit:read-only,
+QLineEdit:read-only:focus {
+    background-color: var(--grey8);
+    border: 1px solid var(--grey6);
+}
+QLineEdit:read-only:hover {
+    background-color: var(--grey7);
+    border: 1px solid var(--grey10);
 }
 
 /* :::::''''''''''''''''''''''''':::::: */
