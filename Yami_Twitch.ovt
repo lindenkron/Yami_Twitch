@@ -173,11 +173,6 @@ MuteCheckBox::indicator:unchecked:disabled {
     image: url(theme:Twitch/settings/audio.svg);
 }
 
-
-QWidget {
-    selection-background-color: var(--purple2);
-}
-
 OBSDock > QWidget {
     background-color: transparent;
     border-radius: 0px;
@@ -189,53 +184,50 @@ OBSDock > QWidget {
 /* because SourceTree::item is the parent of SourceTreeItem */
 /* which is a collection of elements that form sources */
 
+/* Scene list grid spacing */
 .list-grid SceneTree::item {
-    margin: 2px 0px 0px 2px;
+    margin: 2px 0 0 2px;
+}
+
+/* Menus and list widgets */
+QMenu,
+QListWidget {
+    margin: 0;
+    padding: 0;
     border-radius: 0;
 }
 
-QMenu,
-QListWidget {
-    margin: 0px 0px;
-    padding: 0px;
-    border-radius: 0px;
-}
-
-
+/* Main containers */
 SceneTree,
 SourceTree,
 #stackedMixerArea QScrollArea {
-	border: 1px solid var(--purple1);
+    border: 1px solid var(--purple1);
     background-color: var(--bg_base);
-    padding: 0px;
-    border-radius: 0px;
+    padding: 0;
+    border-radius: 0;
 }
 
-SceneTree::item {
-    border-radius: 0px;
-    margin: 1px;
-}
-
-SourceTreeItem {
-    padding-bottom: 2px;
-}
-
+/* Source labels */
 SourceTreeItem OBSSourceLabel {
     padding: 1px;
-    padding-bottom: 2px;
-}
-SceneTree::item,
-SourceTree::item {
-    margin: 1px 1px 0px 1px;
-    border-radius: 0px;
+    margin: 1px;
+    background: orange;
 }
 
+/* Tree items */
+SceneTree::item,
+SourceTree::item {
+    margin: 1px 1px 0 1px;
+    border-radius: 0;
+}
+
+/* Settings / source select lists */
 OBSBasicSettings QListWidget::item,
 OBSBasicSourceSelect QListWidget::item {
     border-radius: 0;
-    padding: 2px;
 }
 
+/* Shared item base */
 QMenu::item,
 QListWidget::item,
 SceneTree::item,
@@ -243,46 +235,44 @@ SourceTree::item {
     border: 1px solid transparent;
 }
 
+/* Selected items (hover or not) */
+QMenu::item:selected,
+QListWidget::item:selected,
+SceneTree::item:selected,
+SourceTree::item:selected {
+    background-color: var(--purple2);
+}
+
+/* Selected + active window */
+QMenu::item:selected:active,
+QListWidget::item:selected:active,
+SceneTree::item:selected:active,
+SourceTree::item:selected:active {
+    border-color: var(--purple2);
+}
+
+/* Selected + inactive window */
+QMenu::item:selected:!active,
+QListWidget::item:selected:!active,
+SceneTree::item:selected:!active,
+SourceTree::item:selected:!active {
+    border-color: var(--grey1);
+}
+
+/* Hovered but not selected */
 QMenu::item:hover:!selected,
 QListWidget::item:hover:!selected,
 SceneTree::item:hover:!selected,
 SourceTree::item:hover:!selected {
     background-color: var(--purple1);
-    border-color: var(--purple3);
+    border-color: var(--purple1);
 }
 
-QMenu::item:selected:!active,
-QListWidget::item:selected:!active,
-SceneTree::item:selected:!active,
-SourceTree::item:selected:!active {
-    background-color: var(--purple2);
-    border-color: var(--grey1);
-}
-
-QMenu::item:selected:active,
-QListWidget::item:selected:active,
-SceneTree::item:selected:active,
-SourceTree::item:selected:active {
-    background-color: var(--purple2);
-    border-color: var(--purple2);
-}
-
-QMenu::item:selected:hover,
-QListWidget::item:selected:hover,
-SceneTree::item:selected:hover,
-SourceTree::item:selected:hover {
-    background-color: var(--purple2);
-    border-color: var(--purple3);
-}
-
+/* Disabled (hover or not) */
 QMenu::item:disabled,
-QMenu::item:disabled:hover,
 QListWidget::item:disabled,
-QListWidget::item:disabled:hover,
 SceneTree::item:disabled,
-SceneTree::item:disabled:hover,
-SourceTree::item:disabled,
-SourceTree::item:disabled:hover {
+SourceTree::item:disabled {
     background: transparent;
     color: var(--text_disabled);
     border-color: transparent;
@@ -358,8 +348,9 @@ QDockWidget::close-button {
 QStatusBar {
     background-color: var(--bg_window);
 }
-
-/* New Add Sources window OBSBasicSourceSelect*/
+/* ::::::::::::::::::::::::::::::: */
+/* :: OBSBasicSourceSelect MENU :: */
+/* ::::::::::::::::::::::::::::::: */
 QLabel#existingLabel {
 	border-bottom: 1px outset var(--purple1);
     background-color: var(--grey6);
@@ -385,39 +376,38 @@ QListWidget#sourceTypeList::item {
     margin: 1px 1px 0px 1px;
 }
 
-FlowFrame#existingListFrame QPushButton {
+/* ::::::::::::::::::::::::::::::::: */
+/* :: OBSBasicSourceSelect BUTTON :: */
+/* ::::::::::::::::::::::::::::::::: */
+
+OBSBasicSourceSelect SourceSelectButton QPushButton {
     border: 1px solid var(--grey8);
     border-radius: 0;
 }
 
-FlowFrame#existingListFrame QLabel#thumbnail  {
-    border-color: var(--grey8);
-    background: var(--grey1);
+OBSBasicSourceSelect SourceSelectButton QPushButton:pressed,
+OBSBasicSourceSelect SourceSelectButton QPushButton:pressed:hover {
+    background-color: var(--purple2);
+    border-color: var(--purple1);
 }
 
-QFrame#createNewFrame {
-    border: 0;
-    border-radius: 0;
-}
-QFrame#createNewFrame QLabel {
-	border-bottom: 1px outset var(--purple1);
-}
-
-QFrame#createNewFrame QLineEdit#newSourceName {
-    background-color: var(--grey8);
-    padding-left: 8px;
-    border: 1px solid transparent;
+OBSBasicSourceSelect SourceSelectButton QPushButton:checked:!active,
+OBSBasicSourceSelect SourceSelectButton QPushButton:checked:hover:!active,
+OBSBasicSourceSelect SourceSelectButton QPushButton:checked,
+OBSBasicSourceSelect SourceSelectButton QPushButton:checked:hover,
+OBSBasicSourceSelect SourceSelectButton QPushButton:hover,
+OBSBasicSourceSelect SourceSelectButton QPushButton:hover:!active {
+    background-color: var(--purple1);
+    border-color: var(--purple3);
 }
 
-QFrame#createNewFrame QLineEdit#newSourceName:hover,
-QFrame#createNewFrame QLineEdit#newSourceName:focus {
+
+OBSBasicSourceSelect SourceSelectButton #thumbnail {
+    border-color: var(--grey10);
     background-color: var(--grey7);
-    border: 1px solid var(--grey9);
 }
 
-
-/* QToolButton, and anything that is supposed to be a QToolButton - but isn't yet  */
-
+/* --------------------- */
 
 #AdvSceneSwitcher  QToolBar QToolButton {
     background-color: var(--grey6);
@@ -848,6 +838,7 @@ StatusBarWidget > QFrame {
 OBSBasicSettings #PropertiesContainer {
     background-color: var(--bg_window);
 }
+
 
 VolumeMeter {
     background-color: var(--grey8);
