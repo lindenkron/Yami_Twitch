@@ -992,6 +992,12 @@ AudioMixer #stackedMixerArea QPushButton::selected {
     border: 1px solid transparent;
 }
 
+/* Toolbar for the Audio Mixer (Hidden, options, toggles) */
+.toolbar-button.toggle-hidden {
+    width: auto;
+    min-width: 75px;
+}
+
 /* :::::::::::::::::::::::: */
 /* :::'                '::: */
 /* ::  OBSBasicAdvAudio  :: */
