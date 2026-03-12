@@ -100,6 +100,7 @@
     --volume_slider: 5px;
 
     /* Variant Extras */
+    --icon_small: calc(8px + var(--font_base_value));
     --icon_base_mixer: calc(4px + var(--icon_base));
     --padding_menu_y: calc(3px + calc(1 * var(--padding_base_value)));
 }
